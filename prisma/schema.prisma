@@ -22,19 +22,29 @@ model Question{
 }
 
 model Space{
+  // TODO : Also add a profile picture for the space.
   id String @id @unique
   owner User @relation(fields: [ownerId], references: [id])
   ownerId String
   spaceName String @unique
   headerTitle String
   customMessage String
-  Questions Question[]
+  Questions Question[]  
 }
 
+// our user who creates space for collecting testimonials
 model User{
+  // ToDo: Also add a profile picture for user
   id String @id @unique
   email String @unique
   username String @unique
   createdAt DateTime @default(now())
   spaces Space[]
+}
+
+model Testimonial{
+  id String @id @unique
+  description String?
+  customerName String
+  customerEmail String
 }
