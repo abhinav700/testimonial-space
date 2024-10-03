@@ -12,3 +12,29 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Question{
+  id String @id @unique
+  description String
+  // Space to which this question belongs
+  space Space @relation(fields: [spaceId], references: [id])
+  spaceId String
+}
+
+model Space{
+  id String @id @unique
+  owner User @relation(fields: [ownerId], references: [id])
+  ownerId String
+  spaceName String @unique
+  headerTitle String
+  customMessage String
+  Questions Question[]
+}
+
+model User{
+  id String @id @unique
+  email String @unique
+  username String @unique
+  createdAt DateTime @default(now())
+  spaces Space[]
+}
