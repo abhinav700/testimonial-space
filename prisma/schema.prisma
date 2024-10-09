@@ -37,7 +37,6 @@ model User{
   // ToDo: Also add a profile picture for user
   id String @id @unique
   email String @unique
-  username String @unique
   createdAt DateTime @default(now())
   spaces Space[]
 }
