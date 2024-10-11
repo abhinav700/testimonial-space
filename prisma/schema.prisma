@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Question{
-  id String @id @unique
+  id String @id @unique @default(uuid())
   description String
   // Space to which this question belongs
   space Space @relation(fields: [spaceId], references: [id])
@@ -23,7 +23,7 @@ model Question{
 
 model Space{
   // TODO : Also add a profile picture for the space.
-  id String @id @unique
+  id String @id @unique  @default(uuid())
   owner User @relation(fields: [ownerId], references: [id])
   ownerId String
   spaceName String @unique
@@ -35,14 +35,15 @@ model Space{
 // our user who creates space for collecting testimonials
 model User{
   // ToDo: Also add a profile picture for user
-  id String @id @unique
+  id String @id @unique @default(uuid())
   email String @unique
   createdAt DateTime @default(now())
+  name String 
   spaces Space[]
 }
 
 model Testimonial{
-  id String @id @unique
+  id String @id @unique @default(uuid())
   description String?
   customerName String
   customerEmail String
