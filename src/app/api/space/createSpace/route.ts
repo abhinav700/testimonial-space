@@ -11,8 +11,8 @@ const SpaceSchema = z.object({
 });
 
 export async function POST(req: NextRequest, res: NextResponse){
-  const prisma = new PrismaClient();
   try {
+    const prisma = new PrismaClient();
     const {ownerEmail, spaceName, headerTitle, customMessage, questions} = SpaceSchema.parse(await req.json())
     
     const newSpace = await prisma.space.create({
