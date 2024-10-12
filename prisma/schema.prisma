@@ -13,23 +13,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Question{
-  id String @id @unique @default(uuid())
-  description String
-  // Space to which this question belongs
-  space Space @relation(fields: [spaceId], references: [id])
-  spaceId String
-}
-
 model Space{
   // TODO : Also add a profile picture for the space.
   id String @id @unique  @default(uuid())
-  owner User @relation(fields: [ownerId], references: [id])
-  ownerId String
+  owner User @relation(fields: [ownerEmail], references: [email])
+  ownerEmail String
   spaceName String @unique
   headerTitle String
   customMessage String
-  Questions Question[]  
+  questions String[] @default([])
 }
 
 // our user who creates space for collecting testimonials
