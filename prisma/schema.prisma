@@ -39,4 +39,6 @@ model Testimonial{
   description String?
   customerName String
   customerEmail String
+  spaceId String
+  createdAt DateTime @default(now())
 }
