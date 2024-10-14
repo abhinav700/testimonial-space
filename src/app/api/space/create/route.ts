@@ -10,11 +10,33 @@ const SpaceSchema = z.object({
   questions: z.array((z.string())).max(5, "only upto 5  questions are allowed")
 });
 
-export async function POST(req: NextRequest, res: NextResponse){
+export async function POST(req: NextRequest){
   try {
     const prisma = new PrismaClient();
-    const {ownerEmail, spaceName, headerTitle, customMessage, questions} = SpaceSchema.parse(await req.json())
+    const data =  SpaceSchema.parse(await req.json())
+    const {ownerEmail, headerTitle, customMessage, questions, spaceName} = data; 
     
+    const user = await prisma.user.findFirst({
+      where:{
+          email: ownerEmail
+      }
+    });
+
+    if(!user)
+      NextResponse.json({msg:"owner does not exist", status: 404});
+
+    const space = await prisma.space.findFirst({
+      where:{
+        spaceName
+      }
+    });
+
+    if(space)
+      return NextResponse.json({msg:"space name should be unique", status: 409});
+
+    // Implement function to make sure that user only sends unique space name on the frontend.
+    // first implement the naive method by checking datbase for every call then productionize it
+    // using reddis
     const newSpace = await prisma.space.create({
       data: {
         ownerEmail,
@@ -28,5 +50,6 @@ export async function POST(req: NextRequest, res: NextResponse){
     return NextResponse.json(newSpace)
   } catch (error) {
     console.log(error)
+    return NextResponse.json({ msg: "Internal Server Error", status: 500 })
   }
 }
