@@ -32,7 +32,7 @@ export async function POST(req: NextRequest){
     });
 
     if(space)
-      return NextResponse.json({msg:"space name should be unique", status: 409});
+      return NextResponse.json({msg:"space name should be unique", status: 404});
 
     // Implement function to make sure that user only sends unique space name on the frontend.
     // first implement the naive method by checking datbase for every call then productionize it
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest){
       }
     })
 
-    return NextResponse.json(newSpace)
+    return NextResponse.json({space: newSpace, status: 200})
   } catch (error) {
     console.log(error)
     return NextResponse.json({ msg: "Internal Server Error", status: 500 })

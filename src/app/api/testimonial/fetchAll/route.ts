@@ -14,19 +14,7 @@ export async function GET(req: NextRequest){
           email
       }
     });
-
-    if(!user)
-      NextResponse.json({msg:"owner does not exist", status: 404});
-
-    const space = await prisma.space.findFirst({
-      where:{
-        spaceId,
-        ownerEmail: email
-      }
-    });
-
-    if(!space)
-      NextResponse.json({msg:"space does not exist", status: 404});
+y
 
     const testimonials = await prisma.testimonials.findMany({
       spaceId
