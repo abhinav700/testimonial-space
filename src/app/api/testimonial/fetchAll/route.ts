@@ -1,23 +1,40 @@
-import { Prisma } from "@prisma/client";
-import { PrismaClient } from "@prisma/client/extension";
+import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+
+const EmailSchema = z.string().email("invalid email");
+const SpaceIdSchema = z.string();
 
 export async function GET(req: NextRequest){
   // Todo : Replace with singleton pattern.
   try {
     const prisma = new PrismaClient()
-    const email = req.nextUrl.searchParams.get('email');
-    const spaceId = req.nextUrl.searchParams.get("spaceId");
+    const email = EmailSchema.parse(req.nextUrl.searchParams.get('email'));
+    const spaceId = SpaceIdSchema.parse(req.nextUrl.searchParams.get("spaceId"));
 
     const user = await prisma.user.findFirst({
-      where:{
+      where: {
           email
       }
     });
-y
 
-    const testimonials = await prisma.testimonials.findMany({
-      spaceId
+    if(!user)
+      NextResponse.json({msg:"owner does not exist", status: 404});
+
+    const space = await prisma.space.findFirst({
+      where: {
+        id: spaceId,
+        ownerEmail: email
+      }
+    });
+
+    if(!space)
+      NextResponse.json({msg:"space does not exist", status: 404});
+
+    const testimonials = await prisma.testimonial.findMany({
+      where: {
+        spaceId
+      }
     })
 
     return NextResponse.json({testimonials, status: 200})
