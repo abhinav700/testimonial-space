@@ -12,14 +12,23 @@ export async function POST(req: NextRequest, response:NextResponse){
     const prisma =  new PrismaClient();
     const {email, name}=  UserDataSchema.parse((await req.json()))
     
-    const user = await prisma.user.create({
+    const user = await prisma.user.findFirst({
+      where:{
+        email
+      }
+    })  
+    
+    if(user)
+      return NextResponse.json({msg:"user already exists", status:403});
+
+    const newUser = await prisma.user.create({
       data:{
         email,
         name
       }
     })
     
-    return NextResponse.json(user)
+    return NextResponse.json({user: newUser})
   } catch (error) {
     console.log(error)
   }
