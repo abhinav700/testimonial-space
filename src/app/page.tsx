@@ -1,10 +1,11 @@
 import Hero from "@/components/Hero/Hero";
-import Image from "next/image";
+import VideoDemo from "@/components/VideoDemo";
 
 export default function Home() {
   return (
-    <>
-      <Hero/> 
-    </>
+    <div>
+      <Hero /> 
+      <VideoDemo />
+    </div>
   );
 }
