@@ -5,7 +5,7 @@ import Button from '../Button';
 
 const Hero = () => {
   return (
-    <section className='w-full h-[100vh] py-3 px-3 flex flex-col items-center bg-[#E9EED9]'>
+    <section className='w-full h-[100vh] py-3 px-3 flex flex-col items-center'>
       <h1 className='text-[60px] font-bold text-green-700 mt-24 text-center'>
         Collect and showcase your<br/>Testmonials.
       </h1>
