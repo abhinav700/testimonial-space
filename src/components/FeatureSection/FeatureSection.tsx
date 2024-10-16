@@ -14,7 +14,7 @@ const features = [
     descrption: "Create unique space for each product or service",
   },
   {
-    icon: <Zap className="text-red-500" fill="#ca4e29" size={40} />,
+    icon: <Zap className="text-red-500" fill="#ef4444" size={40} />,
     title: "Instant updates",
     descrption: "Testimonials appear in real time on your space",
   },
@@ -22,11 +22,12 @@ const features = [
 
 const FeatureSection = () => {
   return (
-    <div className="min-h-[400px] max-h-[90vh] bg-[#E9EED9] py-7 text-center">
+    <div className="min-h-[400px] max-h-[160vh] bg-[#E9EED9] py-7 text-center">
       <h1 className="text-[40px] font-bold text-green-700">Why choose testimonial space?</h1>
-      <div className="flex flex-row min-h-[400px] max-h-[80vh] flex-wrap items-center justify-around">
+      <div className="flex flex-row min-h-[400px] max-h-[150vh] flex-wrap items-center justify-around">
         {features.map((feature) => (
           <FeatureCard
+            key={feature.title}
             description={feature.descrption}
             title={feature.title}
             icon={feature.icon}

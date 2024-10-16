@@ -14,7 +14,7 @@ const NavBar = () => {
 
       {data && data.user ? (
         <Button
-        className="bg-green-700 text-white font-semibold mx-2 px-2 py-2 hover:bg-green-900"
+        className="bg-green-700 text-white font-semibold mx-2 px-2 py-2 hover:bg-green-900 rounded-md"
         onClick={(e) => {
           signOut();
         }}
@@ -23,7 +23,7 @@ const NavBar = () => {
         </Button>
       ) : (
         <Button
-        className="bg-green-700 text-white font-semibold mx-2 px-2 py-2 hover:bg-green-900"
+        className="bg-green-700 text-white font-semibold mx-2 px-2 py-2 hover:bg-green-900 rounded-md"
         onClick={(e) => {
           signIn();
         }}
