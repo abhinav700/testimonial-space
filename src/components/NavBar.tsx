@@ -5,7 +5,7 @@ import Button from "./Button";
 const NavBar = () => {
   const { data } = useSession();
   return (
-    <nav className="flex justify-between py-3 w-full px-3">
+    <nav className="flex justify-between items-center bg-[#e9eeda] py-3 w-full px-3">
       <span className="lg:text-xl font-bold text-green-600 ">
         Testimonial Space
       </span>
