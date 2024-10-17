@@ -39,10 +39,10 @@ const HowItWorks = () => {
         <div className="flex flex-row min-h-[400px] max-h-[150vh] flex-wrap items-center justify-around">
           {
             steps?.map((value : StepItem) => (
-              <div className="min-w-[50px] max-w-[200px] min-h-[250px] max-h-[400px] my-3 px-3 py-6 text-center">
+              <div className="min-w-[50px] max-w-[250px] min-h-[250px] max-h-[400px] my-3 px-3 py-6 text-center">
                 <span className="px-8 py-6 text-[30px] bg-green-600 text-white font-bold rounded-full">{value.id}</span>
-                <h1 className="text-[20px] mt-8 font-bold text-slate-800">{value.title}</h1>
-                <p className="mt-1 text-lg text-slate-800">{value.description}</p>
+                <h1 className="text-[25px] mt-8 font-bold text-slate-800">{value.title}</h1>
+                <p className="mt-1 text-lg font-medium text-slate-800">{value.description}</p>
               </div>
             ))
           }
