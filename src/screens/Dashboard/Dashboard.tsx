@@ -12,14 +12,14 @@ interface OverViewItem {
   description: ReactNode;
   endIcon?: ReactNode;
 }
-// 
-// 
-// 
+//
+//
+//
 // ADD A ONE TO MANY RELATIONSHIP BETWEEN TESTIMONIAL AND SPACE
 // SEE HOW CONNECT WORKS IN PRISMA
 // ADDING A TESTIMONIAL SHOULD AUTOMATICALLY LINK IT TO THE SPACE IT BELONGS TO
-// 
-// 
+//
+//
 const Dashboard = () => {
   // console.log("rerenderd dashboard")
   const { data } = useSession();
@@ -84,26 +84,32 @@ const Dashboard = () => {
         </div>
         {/* Spaces */}
         <div className="flex justify-between items-center mt-6 w-full">
-            <h1 className="sm:text-3xl text-lg font-bold">Spaces</h1>
-            <Button
-              className="p-3 text-white cursor-pointer flex justify-between items-center bg-[#207027] rounded-lg hover:bg-[#168f3b]"
-              onClick={(e)=>{console.log("new space")}}
-            >
-              <span className="mr-2"><Plus/></span>  
-              <span>Create new space</span>
-            </Button>
+          <h1 className="sm:text-3xl text-lg font-bold">Spaces</h1>
+          <Button
+            className="p-3 text-white cursor-pointer flex justify-between items-center bg-[#207027] rounded-lg hover:bg-[#168f3b]"
+            onClick={(e) => {
+              console.log("new space");
+            }}
+          >
+            <span className="mr-2">
+              <Plus />
+            </span>
+            <span>Create new space</span>
+          </Button>
         </div>
-        {
-          spaces?.map((item : Space) =>(
+        {spaces && spaces?.length > 0 ? (
+          spaces?.map((item: Space) => (
             <div className="cursor-pointer w-full flex flex-col items-start my-4 bg-[#dddddd] rounded-lg p-4 hover:bg-[#c2bfbf]">
               <h2 className="text-xl font-bold">{item.spaceName}</h2>
-                <div className="flex mt-3 items-center">
-                  <MessageSquareIcon/>
-                  <span className="mx-2">Text: 0</span>
-                </div>
+              <div className="flex mt-3 items-center">
+                <MessageSquareIcon />
+                <span className="mx-2">Text: 0</span>
+              </div>
             </div>
           ))
-        }
+        ) : (
+          <span className="mt-16 text-4xl flex justify-center font-bold w-full">No spaces to display</span>
+        )}
       </div>
     </section>
   );
