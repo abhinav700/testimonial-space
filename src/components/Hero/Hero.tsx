@@ -1,9 +1,12 @@
 "use client"
-import { signIn } from 'next-auth/react';
-import React from 'react'
+import { signIn, useSession } from 'next-auth/react';
+import React, { useEffect } from 'react'
 import Button from '../Button';
+import { useRouter } from 'next/navigation';
 
 const Hero = () => {
+  const router = useRouter();
+  const { data } = useSession();
   return (
     <section className='w-full h-[100vh] py-3 px-3 flex flex-col items-center'>
       <h1 className='text-[60px] font-bold text-green-700 mt-24 text-center'>
@@ -15,8 +18,15 @@ const Hero = () => {
       </p>
         <Button
         className="rounded-lg mt-12 bg-green-700 text-white font-semibold mx-2 px-2 py-2 hover:bg-green-900"
-        onClick={(e) => {
-          signIn();
+        onClick={async (e) => {
+          try {
+            if(!(data?.user))
+              await signIn()
+            router.push("/dashboard")  
+          } catch (error) {
+           console.log(error); 
+          }
+         
         }}
         >
           Get started for free

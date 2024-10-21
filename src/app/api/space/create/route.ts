@@ -23,7 +23,7 @@ export async function POST(req: NextRequest){
     });
 
     if(!user)
-      NextResponse.json({msg:"owner does not exist", status: 404});
+      return NextResponse.json({msg:"owner does not exist", status: 404});
 
     const space = await prisma.space.findFirst({
       where:{
