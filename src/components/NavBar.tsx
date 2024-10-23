@@ -9,7 +9,7 @@ const NavBar = () => {
   const router =  useRouter();
   const [profileImageUrl, setProfileImageUrl] = useState<
     undefined | null | string
-  >(undefined);
+  >(undefined);     
 
 
   useEffect(() => {
@@ -30,7 +30,10 @@ const NavBar = () => {
             <Button
               className="bg-green-700 text-white font-semibold mx-4 px-2 py-2 hover:bg-green-900 rounded-md"
               onClick={(e) => {
-                signOut();
+                signOut({
+                  redirect: true,
+                  callbackUrl: '/'
+                });
               }}
             >
               Sign Out
