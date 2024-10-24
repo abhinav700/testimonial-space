@@ -20,9 +20,14 @@ const Hero = () => {
         className="rounded-lg mt-12 bg-green-700 text-white font-semibold mx-2 px-2 py-2 hover:bg-green-900"
         onClick={async (e) => {
           try {
-            await signIn("",{
-              callbackUrl: "/dashboard"
-            })
+            if(!data || !data.user || !data?.user?.email){
+
+              await signIn("",{
+                callbackUrl: "/dashboard"
+              })
+            }
+            else
+              router.push("/dashboard");
           } catch (error) {
            console.log(error); 
           }

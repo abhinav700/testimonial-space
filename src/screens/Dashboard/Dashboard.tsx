@@ -5,7 +5,8 @@ import useCreateUser from "@/lib/hooks/user/useCreateUser";
 import { Space, User } from "@/lib/schemas/schema";
 import { MessageSquareIcon, Plus, VideoIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
+import CreateSpaceModal from "./CreateSpaceModal";
 
 interface OverViewItem {
   title: ReactNode;
@@ -21,10 +22,19 @@ interface OverViewItem {
 //
 //
 const Dashboard = () => {
-  // console.log("rerenderd dashboard")
   const { data } = useSession();
   const user: User | null = useCreateUser(data);
   const spaces: Space[] | null = useFetchAllSpaces(user?.email);
+  const [showCreateSpaceModal, setShowCreateSpaceModal] = useState<boolean>(false);
+
+  const handleShowCreateSpaceModal = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    try {
+      setShowCreateSpaceModal(true);
+    } catch (error) {
+      
+    }
+  }
+
   const overViewItems: OverViewItem[] = [
     {
       title: "Total Testimonials",
@@ -39,7 +49,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <section className="px-4 py-6 w-full min-h-[130vh] max-h-fit flex flex-col items-center">
+    <section className="px-4 py-6 w-full min-h-[150vh] max-h-fit flex flex-col items-center" id="dashboard">
       <div className="w-[80%] h-full">
         <div className="flex flex-wrap justify-around items-center max-h-[700px] p-4 bg-[hsl(116,100%,97%)]">
           {/* Demo message which appears at top of dashboard */}
@@ -68,6 +78,7 @@ const Dashboard = () => {
         {/* Overview */}
         <h1 className="md:text-3xl text-lg my-4 font-bold">Overview</h1>
         <div className="w-full flex flex-wrap justify-between">
+          {user && showCreateSpaceModal && <CreateSpaceModal visible={showCreateSpaceModal} setVisible={setShowCreateSpaceModal} user={user}/>}
           {overViewItems.map((item: OverViewItem) => (
             <div className="w-[45%] rounded-lg mt-4 p-4 bg-[#e6ffd1] max-400px">
               <div className="flex justify-between">
@@ -87,17 +98,15 @@ const Dashboard = () => {
           <h1 className="sm:text-3xl text-lg font-bold">Spaces</h1>
           <Button
             className="p-3 text-white cursor-pointer flex justify-between items-center bg-[#207027] rounded-lg hover:bg-[#168f3b]"
-            onClick={(e) => {
-              console.log("new space");
-            }}
+            onClick= {handleShowCreateSpaceModal}
           >
             <span className="mr-2">
               <Plus />
             </span>
-            <span>Create new space</span>
+            <span >Create new space</span>
           </Button>
         </div>
-        {spaces && spaces?.length > 0 ? (
+        {user && spaces && spaces?.length > 0 ? (
           spaces?.map((item: Space) => (
             <div className="cursor-pointer w-full flex flex-col items-start my-4 bg-[#dddddd] rounded-lg p-4 hover:bg-[#c2bfbf]">
               <h2 className="text-xl font-bold">{item.spaceName}</h2>
