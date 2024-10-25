@@ -1,4 +1,4 @@
-import Dashboard from '@/screens/Dashboard/Dashboard'
+import Dashboard from '@/app/dashboard/Dashboard'
 import React from 'react'
 
 const page = () => {

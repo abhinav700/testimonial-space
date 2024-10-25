@@ -1,8 +1,8 @@
-import FeatureSection from '@/components/FeatureSection/FeatureSection'
-import Hero from '@/components/Hero/Hero'
+import FeatureSection from './FeatureSection/FeatureSection'
+import Hero from '@/components/LandingPage/Hero'
 import VideoDemo from '@/components/VideoDemo'
 import React from 'react'
-import HowItWorks from './HowItWorks/HowItWorks'
+import HowItWorks from './HowItWorks'
 
 const LandingPage = () => {
   return (
