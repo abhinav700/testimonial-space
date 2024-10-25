@@ -79,8 +79,8 @@ const Dashboard = () => {
         <h1 className="md:text-3xl text-lg my-4 font-bold">Overview</h1>
         <div className="w-full flex flex-wrap justify-between">
           {user && showCreateSpaceModal && <CreateSpaceModal setVisible={setShowCreateSpaceModal} user={user}/>}
-          {overViewItems.map((item: OverViewItem) => (
-            <div className="w-[45%] rounded-lg mt-4 p-4 bg-[#e6ffd1] max-400px">
+          {overViewItems.map((item: OverViewItem,index) => (
+            <div key={index} className="w-[45%] rounded-lg mt-4 p-4 bg-[#e6ffd1] max-400px">
               <div className="flex justify-between">
                 <span className="text-lg font-medium text-slate-800">
                   {item.title}
@@ -106,9 +106,9 @@ const Dashboard = () => {
             <span >Create new space</span>
           </Button>
         </div>
-        {user && spaces && spaces?.length > 0 ? (
+        {user ?( spaces && spaces?.length > 0 ? (
           spaces?.map((item: Space) => (
-            <div className="cursor-pointer w-full flex flex-col items-start my-4 bg-[#dddddd] rounded-lg p-4 hover:bg-[#c2bfbf]">
+            <div key={item.id} className="cursor-pointer w-full flex flex-col items-start my-4 bg-[#dddddd] rounded-lg p-4 hover:bg-[#c2bfbf]">
               <h2 className="text-xl font-bold">{item.spaceName}</h2>
               <div className="flex mt-3 items-center">
                 <MessageSquareIcon />
@@ -118,7 +118,10 @@ const Dashboard = () => {
           ))
         ) : (
           <span className="mt-16 text-4xl flex justify-center font-bold w-full">No spaces to display</span>
-        )}
+        )):
+      
+          <span className="mt-16 text-4xl flex justify-center font-bold w-full">Processing...</span>
+      }
       </div>
     </section>
   );

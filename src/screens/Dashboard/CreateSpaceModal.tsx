@@ -5,6 +5,9 @@ import { X } from "lucide-react";
 import React, { useState } from "react";
 import { z } from "zod";
 import Space from "../../components/Space";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 // space name
 // header title
 // custom message
@@ -38,6 +41,24 @@ const ModalContainer = () => {
     questions: defaultQuestions
   });
   
+  const {data} = useSession();
+  const router = useRouter()
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    try {
+     
+      const response = await axios.post("/api/space/create", {
+        ...inputData,
+        ownerEmail: data!.user!.email
+      })
+      const space = await response.data;
+      console.log(space);
+      location.reload()
+    } catch (error) {
+      alert(error)
+    }
+  };
+
+
   const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -52,7 +73,7 @@ const ModalContainer = () => {
 
   return (
     <div className="w-[full] flex justify-between">
-      <Space header={inputData.header} customMessage={inputData.customMessage}  questions={inputData.questions}/>
+      <Space onSubmitTestimonial={()=>{return;}} header={inputData.header} customMessage={inputData.customMessage}  questions={inputData.questions}/>
       <div className="w-[50%]">
         <h1 className="text-2xl font-bold my-1 w-[50%]">Create a new Space</h1>
         <span className="mb-5">
@@ -79,14 +100,7 @@ const ModalContainer = () => {
           />
         </div>
         <div className="flex items-center w-[80%] justify-between mt-5">
-          <span className="text-lg font-bold">Custom Message</span>
-          {/* <input
-            className="p-1 border-[1px] border-slate-500 text-black bg-[#e6e5e5]"
-            placeholder="Enter Space name"
-            name={"customMessage"}
-            onChange={handleChange}
-            value={inputData.customMessage}
-            /> */}
+          <span className="text-lg font-bold">Custom Message</span> 
           <textarea
             className="p-1 border-[1px] border-slate-500 text-black bg-[#e6e5e5]"
             placeholder="Tell us What you think"
@@ -97,9 +111,7 @@ const ModalContainer = () => {
         </div>
         <Button
           className="bg-slate-600 p-3 hover:bg-slate-700 cursor-pointer text-white text-md font-medium rounded-lg mt-6 relative right-0"
-          onClick={(e: any) => {
-            console.log("");
-          }}
+          onClick={handleSubmit}
         >
           Create Space
         </Button>
