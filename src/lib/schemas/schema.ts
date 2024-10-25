@@ -4,7 +4,7 @@ export const SpaceSchema = z.object({
   id: z.string().uuid("SpaceSchema: Invalid id"),
   ownerEmail: z.string().email("SpaceSchema: Invalid email"),
   spaceName: z.string(),
-  headerTitle: z.string(),
+  header: z.string(),
   customMessage: z.string(),
   questions: z.array(z.string()),
 });

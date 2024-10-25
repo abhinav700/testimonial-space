@@ -78,7 +78,7 @@ const Dashboard = () => {
         {/* Overview */}
         <h1 className="md:text-3xl text-lg my-4 font-bold">Overview</h1>
         <div className="w-full flex flex-wrap justify-between">
-          {user && showCreateSpaceModal && <CreateSpaceModal visible={showCreateSpaceModal} setVisible={setShowCreateSpaceModal} user={user}/>}
+          {user && showCreateSpaceModal && <CreateSpaceModal setVisible={setShowCreateSpaceModal} user={user}/>}
           {overViewItems.map((item: OverViewItem) => (
             <div className="w-[45%] rounded-lg mt-4 p-4 bg-[#e6ffd1] max-400px">
               <div className="flex justify-between">

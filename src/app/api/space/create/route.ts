@@ -5,7 +5,7 @@ import { z } from "zod"
 const SpaceSchema = z.object({
   ownerEmail: z.string().email("invalid email"),
   spaceName: z.string(),
-  headerTitle: z.string(),
+  header: z.string(),
   customMessage: z.string(),
   questions: z.array((z.string())).max(5, "only upto 5  questions are allowed")
 });
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest){
   try {
     const prisma = new PrismaClient();
     const data =  SpaceSchema.parse(await req.json())
-    const {ownerEmail, headerTitle, customMessage, questions, spaceName} = data; 
+    const {ownerEmail, header, customMessage, questions, spaceName} = data; 
     
     const user = await prisma.user.findFirst({
       where:{
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest){
       data: {
         ownerEmail,
         spaceName,
-        headerTitle,
+        header,
         customMessage,
         questions
       }
