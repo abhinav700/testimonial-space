@@ -30,8 +30,8 @@ const Space = ({
       </span>
       <div className="w-max-[700px] w-min-[400px] h-min-[700px] h-max-full py-5 px-6 mr-3 rounded-lg border-2 border-slate-800 flex flex-col items-start">
         <div className="flex flex-col items-center w-full h-full text-wrap">
-          <h1 className="md:text-3xl text-xl mt-4 font-bold w-full">{header}</h1>
-          <span className="text-slate-900 mt-4 font-light ">
+          <h1 className="md:text-3xl text-xl mt-4 font-bold w-full text-center">{header}</h1>
+          <span className="text-slate-900 mt-4 font-light w-full text-center">
             {customMessage}
           </span>
         </div>
