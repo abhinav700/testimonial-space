@@ -3,10 +3,11 @@ import Button from "@/components/Button";
 import useFetchAllSpaces from "@/lib/hooks/space/useFetchAllSpaces";
 import useCreateUser from "@/lib/hooks/user/useCreateUser";
 import { Space, User } from "@/lib/schemas/schema";
-import { MessageSquareIcon, Plus, VideoIcon } from "lucide-react";
+import { MessageSquareIcon, Plus, Trash2, VideoIcon, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { ReactNode, useState } from "react";
 import CreateSpaceModal from "./CreateSpaceModal";
+import axios from "axios";
 
 interface OverViewItem {
   title: ReactNode;
@@ -24,16 +25,61 @@ interface OverViewItem {
 const Dashboard = () => {
   const { data } = useSession();
   const user: User | null = useCreateUser(data);
-  const spaces: Space[] | null = useFetchAllSpaces(user?.email);
-  const [showCreateSpaceModal, setShowCreateSpaceModal] = useState<boolean>(false);
+  const { setSpaces, spaces } = useFetchAllSpaces(user?.email);
+  const [showCreateSpaceModal, setShowCreateSpaceModal] =
+    useState<boolean>(false);
 
-  const handleShowCreateSpaceModal = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+
+  const DeleteModal = ({ id }: { id: string }) => {
+    // document.body.style.overflow = "hidden";
+    return (
+      <div className="fixed top-0 left-0 w-full h-full backdrop-blur-sm flex items-center justify-center">
+      <div className="max-h-[500px] min-h-[200px] w-[30%] flex flex-col items-center bg-slate-200 rounded-lg">
+        <span className="w-full flex justify-end px-4 mt-1">
+        <X onClick={(e)=> setShowDeleteModal(false)} className="hover:bg-opacity-60 cursor-pointer"/>
+
+        </span>
+          <h1 className="text-2xl font-bold mt-4">Are you sure you want to delete this?</h1>
+          <div className="flex w-[300px] justify-around h-full mt-8">
+            <Button className="py-2 px-3 bg-red-700 hover:bg-red-800 text-white cursor-pointer text-xl rounded-lg" onClick={(e) => handleDeleteSpace(id)}>Yes</Button>
+            <Button
+              className="py-2 px-4 bg-blue-700 hover:bg-blue-800 text-white cursor-pointer text-xl rounded-lg"
+              onClick={(e) => {
+
+                setShowDeleteModal(false);
+              }}
+            >
+              No
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const handleShowCreateSpaceModal = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     try {
       setShowCreateSpaceModal(true);
+    } catch (error) {}
+  };
+
+  const handleDeleteSpace = async (id: string) => {
+    try {
+      const response = await axios.delete(`/api/space/delete?id=${id}`);
+      const data = await response.data;
+      if (data.status == 200) {
+        setSpaces(spaces!.filter((item) => item.id != id));
+      }
+      alert(data.msg);
     } catch (error) {
-      
+      alert(error);
+    } finally {
+      setShowDeleteModal(false);
     }
-  }
+  };
 
   const overViewItems: OverViewItem[] = [
     {
@@ -49,7 +95,10 @@ const Dashboard = () => {
   ];
 
   return (
-    <section className="px-4 py-6 w-full min-h-[150vh] max-h-fit flex flex-col items-center" id="dashboard">
+    <section
+      className="px-4 py-6 w-full min-h-[150vh] max-h-fit flex flex-col items-center"
+      id="dashboard"
+    >
       <div className="w-[80%] h-full">
         <div className="flex flex-wrap justify-around items-center max-h-[700px] p-4 bg-[hsl(116,100%,97%)]">
           {/* Demo message which appears at top of dashboard */}
@@ -78,9 +127,17 @@ const Dashboard = () => {
         {/* Overview */}
         <h1 className="md:text-3xl text-lg my-4 font-bold">Overview</h1>
         <div className="w-full flex flex-wrap justify-between">
-          {user && showCreateSpaceModal && <CreateSpaceModal setVisible={setShowCreateSpaceModal} user={user}/>}
-          {overViewItems.map((item: OverViewItem,index) => (
-            <div key={index} className="w-[45%] rounded-lg mt-4 p-4 bg-[#e6ffd1] max-400px">
+          {user && showCreateSpaceModal && (
+            <CreateSpaceModal
+              setVisible={setShowCreateSpaceModal}
+              user={user}
+            />
+          )}
+          {overViewItems.map((item: OverViewItem, index) => (
+            <div
+              key={index}
+              className="w-[45%] rounded-lg mt-4 p-4 bg-[#e6ffd1] max-400px"
+            >
               <div className="flex justify-between">
                 <span className="text-lg font-medium text-slate-800">
                   {item.title}
@@ -98,30 +155,53 @@ const Dashboard = () => {
           <h1 className="sm:text-3xl text-lg font-bold">Spaces</h1>
           <Button
             className="p-3 text-white cursor-pointer flex justify-between items-center bg-[#207027] rounded-lg hover:bg-[#168f3b]"
-            onClick= {handleShowCreateSpaceModal}
+            onClick={handleShowCreateSpaceModal}
           >
             <span className="mr-2">
               <Plus />
             </span>
-            <span >Create new space</span>
+            <span>Create new space</span>
           </Button>
         </div>
-        {user ?( spaces && spaces?.length > 0 ? (
-          spaces?.map((item: Space) => (
-            <div key={item.id} className="cursor-pointer w-full flex flex-col items-start my-4 bg-[#dddddd] rounded-lg p-4 hover:bg-[#c2bfbf]">
-              <h2 className="text-xl font-bold">{item.spaceName}</h2>
-              <div className="flex mt-3 items-center">
-                <MessageSquareIcon />
-                <span className="mx-2">Text: 0</span>
-              </div>
-            </div>
-          ))
+        {user ? (
+          spaces && spaces?.length > 0 ? (
+            spaces?.map((item: Space) => (
+              <>
+              {showDeleteModal && <DeleteModal id={item.id}/>}
+                <div className="w-full rounded-lg p-4 cursor-pointer my-4 bg-[#dddddd] hover:bg-[#c2bfbf] flex justify-between items-center">
+                  <div
+                    key={item.id}
+                    className="flex flex-col w-fit items-start "
+                  >
+                    <h2 className="text-xl font-bold">{item.spaceName}</h2>
+                    <div className="flex mt-3 items-center">
+                      <MessageSquareIcon />
+                      <span className="mx-2">Text: 0</span>
+                    </div>
+                  </div>
+                  <Button
+                    className="bg-red-600 text-white] h-fit py-2 px-3 rounded-lg text-white  hover:bg-red-700 flex items-center justify-around"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setShowDeleteModal(true);
+                    }}
+                  >
+                    <Trash2 />
+                    <span className="ml-2">Delete</span>
+                  </Button>
+                </div>
+              </>
+            ))
+          ) : (
+            <span className="mt-16 text-4xl flex justify-center font-bold w-full">
+              No spaces to display
+            </span>
+          )
         ) : (
-          <span className="mt-16 text-4xl flex justify-center font-bold w-full">No spaces to display</span>
-        )):
-      
-          <span className="mt-16 text-4xl flex justify-center font-bold w-full">Processing...</span>
-      }
+          <span className="mt-16 text-4xl flex justify-center font-bold w-full">
+            Processing...
+          </span>
+        )}
       </div>
     </section>
   );

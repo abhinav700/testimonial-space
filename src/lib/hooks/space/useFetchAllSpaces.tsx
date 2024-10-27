@@ -27,7 +27,7 @@ const useFetchAllSpaces = (email: string | undefined) => {
     fetchAllSpace();
   }, [email]);
 
-  return spaces;
+  return {spaces, setSpaces};
 };
 
 export default useFetchAllSpaces;
