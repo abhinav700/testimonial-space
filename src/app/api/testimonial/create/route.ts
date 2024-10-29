@@ -23,16 +23,15 @@ export async function POST(req: NextRequest, res: NextResponse){
       NextResponse.json({msg:"space does not exist", status: 404});
 
     
-    const newTestimonial = await prisma.testimonial.create({
+    const testimonial = await prisma.testimonial.create({
       data:{
         description,
         customerName,
         customerEmail,
         spaceId     
-      }
+      },
     })
-
-    return NextResponse.json({testimonial: newTestimonial, status: 200});
+    return NextResponse.json({testimonial, status: 200});
   } catch (error) {
     console.log(error);
     return NextResponse.json({status:"500"})

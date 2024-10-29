@@ -13,6 +13,9 @@ export async function GET(req: NextRequest){
     const spaces = await prisma.space.findMany({
       where:{
         ownerEmail: email
+      },
+      include: {
+        testimonials: true,
       }
     });
 

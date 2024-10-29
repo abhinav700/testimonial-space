@@ -1,5 +1,16 @@
 import { z } from "zod";
 
+export const TestimonialSchema = z.object({
+  id: z.string().uuid(),
+  description: z.string(),
+  customerName: z.string(),
+  customerEmail: z.string().email(),
+  spaceId: z.string().uuid(),
+});
+
+export type TestimonialType = z.infer<typeof TestimonialSchema>;
+
+
 export const SpaceSchema = z.object({
   id: z.string().uuid("SpaceSchema: Invalid id"),
   ownerEmail: z.string().email("SpaceSchema: Invalid email"),
@@ -7,9 +18,10 @@ export const SpaceSchema = z.object({
   header: z.string(),
   customMessage: z.string(),
   questions: z.array(z.string()),
+  testimonials: z.optional(z.array(TestimonialSchema)),
 });
 
-export type Space = z.infer<typeof SpaceSchema>;
+export type SpaceType = z.infer<typeof SpaceSchema>;
 
 export const UserSchema = z.object({
   id: z.string().uuid(),
@@ -20,13 +32,11 @@ export const UserSchema = z.object({
 
 export type User = z.infer<typeof UserSchema>;
 
-export const TestimonialSchema = z.object({
-  id: z.string().uuid(),
+export const TestimonialFormDataSchema = z.object({
   description: z.string(),
   customerName: z.string(),
   customerEmail: z.string().email(),
-  spaceId: z.string().uuid(),
-  date: z.date()
 });
 
-export type Testimonial = z.infer<typeof TestimonialSchema>;
+
+export type TestimonialFormDataType = z.infer<typeof TestimonialFormDataSchema>;

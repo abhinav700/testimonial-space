@@ -80,6 +80,7 @@ const ModalContainer = () => {
         header={inputData.header}
         customMessage={inputData.customMessage}
         questions={inputData.questions}
+        isPreview
       />
       <div className="w-[50%]">
         <h1 className="text-2xl font-bold my-1 w-[50%]">Create a new Space</h1>

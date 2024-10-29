@@ -10,6 +10,7 @@ interface SpaceProps {
   spaceName?: string;
   questions?: string[];
   onSubmitTestimonial?: () => void;
+  isPreview:boolean;
 }
 
 const Space = ({
@@ -18,6 +19,7 @@ const Space = ({
   spaceName,
   questions,
   onSubmitTestimonial,
+  isPreview
 }: SpaceProps) => {
 
  const handleSubmit= () =>{

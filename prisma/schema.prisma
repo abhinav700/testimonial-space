@@ -14,18 +14,21 @@ datasource db {
 }
 
 model Space{
-  // TODO : Also add a profile picture for the space.
+  // TODO: Also add a profile picture for the space.
+  // TODO: Add a relationship betweeen testimonial and space 
   id String @id @unique  @default(uuid())
   ownerEmail String
   spaceName String @unique
   header String
   customMessage String
   questions String[] @default([])
+  testimonials Testimonial[]
 }
 
 // our user who creates space for collecting testimonials
 model User{
   // ToDo: Also add a profile picture for user
+  // TODO: Add a one to many relationship between user and space 
   id String @id @unique @default(uuid())
   email String @unique
   createdAt DateTime @default(now())
@@ -37,6 +40,7 @@ model Testimonial{
   description String?
   customerName String
   customerEmail String
-  spaceId String
   createdAt DateTime @default(now())
+  space Space @relation(fields: [spaceId], references: [id])
+  spaceId String
 }

@@ -2,7 +2,7 @@
 import Button from "@/components/Button";
 import useFetchAllSpaces from "@/lib/hooks/space/useFetchAllSpaces";
 import useCreateUser from "@/lib/hooks/user/useCreateUser";
-import { Space, User } from "@/lib/schemas/schema";
+import { SpaceType, User } from "@/lib/schemas/schema";
 import { MessageSquareIcon, Plus, Trash2, VideoIcon, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { ReactNode, useState } from "react";
@@ -81,10 +81,15 @@ const Dashboard = () => {
     }
   };
 
+  let totalTestimonials = 0;
+  spaces?.map((item: SpaceType)=>{
+     totalTestimonials += item.testimonials ? item.testimonials.length : 0
+  })
+
   const overViewItems: OverViewItem[] = [
     {
       title: "Total Testimonials",
-      description: "0/2",
+      description: totalTestimonials,
       endIcon: <VideoIcon />,
     },
     {
@@ -165,7 +170,7 @@ const Dashboard = () => {
         </div>
         {user ? (
           spaces && spaces?.length > 0 ? (
-            spaces?.map((item: Space) => (
+            spaces?.map((item: SpaceType) => (
               <>
               {showDeleteModal && <DeleteModal id={item.id}/>}
                 <div className="w-full rounded-lg p-4 cursor-pointer my-4 bg-[#dddddd] hover:bg-[#c2bfbf] flex justify-between items-center">
@@ -176,7 +181,7 @@ const Dashboard = () => {
                     <h2 className="text-xl font-bold">{item.spaceName}</h2>
                     <div className="flex mt-3 items-center">
                       <MessageSquareIcon />
-                      <span className="mx-2">Text: 0</span>
+                      <span className="mx-2">Testimonials: {item.testimonials? item.testimonials.length : 0}</span>
                     </div>
                   </div>
                   <Button
