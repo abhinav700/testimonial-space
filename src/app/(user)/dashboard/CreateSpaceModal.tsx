@@ -4,10 +4,10 @@ import { User } from "@/lib/schemas/schema";
 import { X } from "lucide-react";
 import React, { useState } from "react";
 import { z } from "zod";
-import Space from "../../components/Space";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Space from "@/components/Space";
 // space name
 // header title
 // custom message
