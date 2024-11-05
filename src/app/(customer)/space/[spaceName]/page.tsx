@@ -7,6 +7,7 @@ import useFetchSpaceByName from "./useFetchSpaceByName";
 import { PenSquareIcon } from "lucide-react";
 import { SpaceType, TestimonialFormDataType } from "@/lib/schemas/schema";
 import axios from "axios";
+import LoadingMessage from "@/components/LoadingMessage";
 
 const page = () => {
   console.log("ReRenders");
@@ -62,9 +63,7 @@ const page = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-full flex justify-center items-center">
-        <span className="text-3xl font-bold">Processing....</span>
-      </div>
+     <LoadingMessage/>
     );
   } else if (!space) {
     return (

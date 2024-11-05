@@ -6,6 +6,7 @@ export const TestimonialSchema = z.object({
   customerName: z.string(),
   customerEmail: z.string().email(),
   spaceId: z.string().uuid(),
+  createdAt: z.optional(z.string()),
 });
 
 export type TestimonialType = z.infer<typeof TestimonialSchema>;

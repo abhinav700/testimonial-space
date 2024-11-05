@@ -31,5 +31,6 @@ export async function POST(req: NextRequest, response:NextResponse){
     return NextResponse.json({user: newUser})
   } catch (error) {
     console.log(error)
+    return NextResponse.json({msg: "Internal server error", status:400})
   }
 }
