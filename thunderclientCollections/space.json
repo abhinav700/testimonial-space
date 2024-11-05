@@ -1,0 +1,116 @@
+{
+    "info": {
+        "_postman_id": "0365c72d-cbfd-41fd-953a-e31d7a9be454",
+        "name": "spaces",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "fetchAll",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/space/fetchAll?email=abhinavagrawal700@gmail.com",
+                    "query": [
+                        {
+                            "key": "email",
+                            "value": "abhinavagrawal700@gmail.com"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "space",
+                        "fetchAll"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "create",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3000/api/space/create",
+                    "path": [
+                        "api",
+                        "space",
+                        "create"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"ownerEmail\": \"abhinavagrawal700@gmail.com\",\n  \"spaceName\": \"testing Space\",\n  \"header\": \"dummy Title\",\n  \"customMessage\": \"dummyCustomMessage\",\n  \"questions\":[\"how are you?\"]\n}"
+                }
+            }
+        },
+        {
+            "name": "fetchByName",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/space/fetchByName?spaceName=testing Space",
+                    "query": [
+                        {
+                            "key": "spaceName",
+                            "value": "testing Space"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "space",
+                        "fetchByName"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "delete",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/space/delete?id=50205460-ca4f-451d-b8b8-4519e9bd4fdd",
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "50205460-ca4f-451d-b8b8-4519e9bd4fdd"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "space",
+                        "delete"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        }
+    ]
+}

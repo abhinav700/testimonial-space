@@ -1,0 +1,66 @@
+{
+    "info": {
+        "_postman_id": "bc9669a1-3111-4cba-9bd0-62b173c21dbc",
+        "name": "testimonial",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "fetchAll",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/testimonial/fetchAll?email=abhinavagrawal700@gmail.com&spaceId=7efa0a33-9e0d-4626-ab28-cd4119fbc3be",
+                    "query": [
+                        {
+                            "key": "email",
+                            "value": "abhinavagrawal700@gmail.com"
+                        },
+                        {
+                            "key": "spaceId",
+                            "value": "7efa0a33-9e0d-4626-ab28-cd4119fbc3be"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "testimonial",
+                        "fetchAll"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "delete",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:3000/api/testimonial/delete?id=83ab6e10-18b0-46a5-b9df-c1131a6d330a",
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "83ab6e10-18b0-46a5-b9df-c1131a6d330a"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "testimonial",
+                        "delete"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        }
+    ]
+}
