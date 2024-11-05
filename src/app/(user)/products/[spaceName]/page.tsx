@@ -1,20 +1,27 @@
 "use client";
 import { useParams } from "next/navigation";
-import React, { useCallback, useState } from "react";
+import React, {useState } from "react";
 import Header from "./Header";
 import useFetchSpaceByName from "@/app/(customer)/space/[spaceName]/useFetchSpaceByName";
-import { SpaceType, TestimonialType } from "@/lib/schemas/schema";
+import { TestimonialType } from "@/lib/schemas/schema";
 import LoadingMessage from "@/components/LoadingMessage";
+import {
+  X,
+} from "lucide-react";
+import Button from "@/components/Button";
+import TestimonialItem from "./TestimonialItem";
+import axios from "axios";
 
 const page = () => {
   const params = useParams();
   const { spaceName } = params;
   const [loading, setLoading] = useState<boolean>(true);
-
-  const space = useFetchSpaceByName({
+  
+  const {space,setSpace} = useFetchSpaceByName({
     setLoading,
     spaceName: spaceName as string,
   });
+
 
   if (loading) {
     return <LoadingMessage />;
@@ -33,25 +40,11 @@ const page = () => {
         totalTestimonials={space.testimonials ? space.testimonials.length : 0}
         spaceName={space.spaceName}
       />
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center min-h-[100vh] max-h-fit mt-3">
         {space?.testimonials?.map((testimonial: TestimonialType) => {
-          console.log(testimonial)
-          return (
-            <div className="w-[90%] sm:w-[70%] md:w-[50%] min-h-[150px] max-h-[500px] flex flex-col justify-between items-start p-4 my-2 rounded-md bg-[#aaaaaa]">
-              <p>{testimonial.description}</p>
-              <div className="w-full flex justify-between">
-                <span className="flex flex-col items-start">
-                  <span className="font-bold text-black">Name</span>
-                  <span>{testimonial.customerName}</span>
-                </span>
-                <span className="flex flex-col items-start">
-                  <span className="font-bold text-black">Submitted At</span>
-                  <span>{new Date(testimonial.createdAt!).toLocaleString()}</span>
-                </span>
-                
-              </div>
-            </div>
-          );
+          return<>
+           <TestimonialItem key={testimonial.id} space={space} testimonial={testimonial} setSpace={setSpace}/>;
+          </>
         })}
       </div>
     </>

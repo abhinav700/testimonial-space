@@ -188,7 +188,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <Button
-                    className="bg-red-600 text-white] h-fit py-2 px-3 rounded-lg text-white  hover:bg-red-700 flex items-center justify-around"
+                    className="bg-red-600 h-fit py-2 px-3 rounded-lg text-white  hover:bg-red-700 flex items-center justify-around"
                     onClick={(e) => {
                       e.stopPropagation()
                       setShowDeleteModal(true);

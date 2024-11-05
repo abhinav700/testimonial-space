@@ -22,7 +22,7 @@ const page = () => {
   const [isSubmissionPending, setIsSubmissionPending] =
     useState<boolean>(false);
 
-  const space: SpaceType | null = useFetchSpaceByName({
+  const {space}: {space: SpaceType | null }= useFetchSpaceByName({
     spaceName: spaceName as string,
     setLoading,
   });

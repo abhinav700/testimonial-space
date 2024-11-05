@@ -35,7 +35,7 @@ const useFetchSpaceByName = ({setLoading, spaceName}: useFetchSpaceByNameProps) 
     fetchSpaceByName(spaceName);
   }, [spaceName]);
 
-  return space;
+  return {space, setSpace};
 };
 
 export default useFetchSpaceByName;
