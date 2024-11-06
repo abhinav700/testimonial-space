@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "bc9669a1-3111-4cba-9bd0-62b173c21dbc",
+        "_postman_id": "42e37e74-9705-4118-b183-50ecb817ca5d",
         "name": "testimonial",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -53,6 +53,32 @@
                         "api",
                         "testimonial",
                         "delete"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "fetch",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/testimonial/fetch?id=4c1081e4-58f9-41f3-a6e1-21d33359e21e",
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "4c1081e4-58f9-41f3-a6e1-21d33359e21e"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "testimonial",
+                        "fetch"
                     ],
                     "protocol": "http",
                     "host": [

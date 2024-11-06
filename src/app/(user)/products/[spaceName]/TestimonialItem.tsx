@@ -51,7 +51,7 @@ const TestimonialItem = ({
           </div>
 
           {/* Options to share, edit and delete the testimonial */}
-          {showToolbar && <TestimonialToolbar setShowDeleteModal={setShowDeleteModal}/>}
+          {showToolbar && <TestimonialToolbar setShowDeleteModal={setShowDeleteModal} testimonial={testimonial}/>}
 
           {/* Icon to trigger the menu */}
           <div className="w-full flex justify-end h-[fit]">

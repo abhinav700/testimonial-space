@@ -1,17 +1,21 @@
 import Button from "@/components/Button";
+import EmbedTestimonialModal from "@/components/EmbedTestimonialModal";
+import { TestimonialType } from "@/lib/schemas/schema";
 import { Code, Link, PenIcon, Share2, Trash2 } from "lucide-react";
 import React, { SetStateAction, useEffect, useRef, useState } from "react";
 
 interface TestimonialToolbarProps {
   setShowDeleteModal: React.Dispatch<SetStateAction<boolean>>;
+  testimonial: TestimonialType;
 }
 
 const TestimonialToolbar = ({
   setShowDeleteModal,
+  testimonial
 }: TestimonialToolbarProps) => {
   const [showShareMenuOptions, setShowShareMenuOptions] =
     useState<boolean>(false);
-
+  const [showEmbedTestimonialModal, setShowEmbedTestimonialModal] = useState<boolean>(false);
   const DeleteButton = () => {
     return (
       <span className="flex items-center text-md p-1 mx-1">
@@ -54,8 +58,9 @@ const TestimonialToolbar = ({
 
     const handleClickOutside = (e:any) => {
       console.log("handle click outside")
-      if(shareMenuRef.current && !shareMenuRef.current.contains(e.target))
+      if(shareMenuRef.current && !shareMenuRef.current.contains(e.target)){
         setShowShareMenuOptions(false);
+      }
     }
 
     useEffect(() => {
@@ -67,9 +72,9 @@ const TestimonialToolbar = ({
     }, [showShareMenuOptions]);
     return (
       <div ref={shareMenuRef} className="text-sm max-h-fit mr-[250px] absolute mt-[50px] w-[200px] flex flex-col items-start bg-slate-200 rounded-md">
-        <span className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center">
+        <span className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center" onClick={(e)=>setShowEmbedTestimonialModal(true)}>
           <Code className="text-tiny mr-3" />
-          Embed
+          Embed the testimonial
         </span>
         <span className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center">
           <Link className="text-tiny mr-3" />
@@ -78,6 +83,8 @@ const TestimonialToolbar = ({
       </div>
     );
   };
+
+
   const ShareButton = () => {
     return (
       <div className="flex flex-col">
@@ -99,6 +106,7 @@ const TestimonialToolbar = ({
 
   return (
     <div className="w-full flex justify-end items-center mt-3">
+      {showEmbedTestimonialModal && <EmbedTestimonialModal testimonial={testimonial} setShowEmbedTestimonialModal={setShowEmbedTestimonialModal}/>}
       <ShareButton />
       <DeleteButton />
       <EditButton />
