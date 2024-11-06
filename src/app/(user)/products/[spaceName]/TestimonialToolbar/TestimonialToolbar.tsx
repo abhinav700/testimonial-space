@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import { Code, Link, PenIcon, Share2, Trash2 } from "lucide-react";
-import React, { SetStateAction, useState } from "react";
+import React, { SetStateAction, useEffect, useRef, useState } from "react";
 
 interface TestimonialToolbarProps {
   setShowDeleteModal: React.Dispatch<SetStateAction<boolean>>;
@@ -42,24 +42,43 @@ const TestimonialToolbar = ({
     );
   };
 
-  const ShareButton = () => {
-    const ShareMenuOptions = () => {
-      return (
-        <div
-          className="text-sm max-h-fit mr-[250px] absolute mt-[50px] w-[200px] flex flex-col items-start bg-slate-200 rounded-md"
-        >
-          <span className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center">
-            <Code className="text-tiny mr-3" />
-            Embed
-          </span>
-          <span className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center">
-            <Link className="text-tiny mr-3" />
-            Get the link
-          </span>
-        </div>
-      );
-    };
+  const ShareMenuOptions = ({
+    showShareMenuOptions,
+    setShowShareMenuOptions,
+  }: {
+    showShareMenuOptions: true;
+    setShowShareMenuOptions: React.Dispatch<SetStateAction<boolean>>;
+  }) => {
 
+    const shareMenuRef = useRef<HTMLDivElement>(null);
+
+    const handleClickOutside = (e:any) => {
+      console.log("handle click outside")
+      if(shareMenuRef.current && !shareMenuRef.current.contains(e.target))
+        setShowShareMenuOptions(false);
+    }
+
+    useEffect(() => {
+      if (showShareMenuOptions)
+        document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [showShareMenuOptions]);
+    return (
+      <div ref={shareMenuRef} className="text-sm max-h-fit mr-[250px] absolute mt-[50px] w-[200px] flex flex-col items-start bg-slate-200 rounded-md">
+        <span className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center">
+          <Code className="text-tiny mr-3" />
+          Embed
+        </span>
+        <span className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center">
+          <Link className="text-tiny mr-3" />
+          Get the link
+        </span>
+      </div>
+    );
+  };
+  const ShareButton = () => {
     return (
       <div className="flex flex-col">
         <Button
@@ -73,7 +92,7 @@ const TestimonialToolbar = ({
             <span>Share</span>
           </div>
         </Button>
-        {showShareMenuOptions && <ShareMenuOptions />}
+        {showShareMenuOptions && <ShareMenuOptions showShareMenuOptions={showShareMenuOptions} setShowShareMenuOptions={setShowShareMenuOptions}/>}
       </div>
     );
   };
