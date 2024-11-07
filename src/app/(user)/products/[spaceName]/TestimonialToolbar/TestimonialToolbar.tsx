@@ -11,11 +11,12 @@ interface TestimonialToolbarProps {
 
 const TestimonialToolbar = ({
   setShowDeleteModal,
-  testimonial
+  testimonial,
 }: TestimonialToolbarProps) => {
   const [showShareMenuOptions, setShowShareMenuOptions] =
     useState<boolean>(false);
-  const [showEmbedTestimonialModal, setShowEmbedTestimonialModal] = useState<boolean>(false);
+  const [showEmbedTestimonialModal, setShowEmbedTestimonialModal] =
+    useState<boolean>(false);
   const DeleteButton = () => {
     return (
       <span className="flex items-center text-md p-1 mx-1">
@@ -53,15 +54,14 @@ const TestimonialToolbar = ({
     showShareMenuOptions: true;
     setShowShareMenuOptions: React.Dispatch<SetStateAction<boolean>>;
   }) => {
-
     const shareMenuRef = useRef<HTMLDivElement>(null);
 
-    const handleClickOutside = (e:any) => {
-      console.log("handle click outside")
-      if(shareMenuRef.current && !shareMenuRef.current.contains(e.target)){
+    const handleClickOutside = (e: any) => {
+      console.log("handle click outside");
+      if (shareMenuRef.current && !shareMenuRef.current.contains(e.target)) {
         setShowShareMenuOptions(false);
       }
-    }
+    };
 
     useEffect(() => {
       if (showShareMenuOptions)
@@ -71,8 +71,14 @@ const TestimonialToolbar = ({
       };
     }, [showShareMenuOptions]);
     return (
-      <div ref={shareMenuRef} className="text-sm max-h-fit mr-[250px] absolute mt-[50px] w-[200px] flex flex-col items-start bg-slate-200 rounded-md">
-        <span className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center" onClick={(e)=>setShowEmbedTestimonialModal(true)}>
+      <div
+        ref={shareMenuRef}
+        className="text-sm max-h-fit mr-[250px] absolute mt-[50px] w-[200px] flex flex-col items-start bg-slate-200 rounded-md"
+      >
+        <span
+          className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center"
+          onClick={(e) => setShowEmbedTestimonialModal(true)}
+        >
           <Code className="text-tiny mr-3" />
           Embed the testimonial
         </span>
@@ -83,7 +89,6 @@ const TestimonialToolbar = ({
       </div>
     );
   };
-
 
   const ShareButton = () => {
     return (
@@ -99,18 +104,30 @@ const TestimonialToolbar = ({
             <span>Share</span>
           </div>
         </Button>
-        {showShareMenuOptions && <ShareMenuOptions showShareMenuOptions={showShareMenuOptions} setShowShareMenuOptions={setShowShareMenuOptions}/>}
+        {showShareMenuOptions && (
+          <ShareMenuOptions
+            showShareMenuOptions={showShareMenuOptions}
+            setShowShareMenuOptions={setShowShareMenuOptions}
+          />
+        )}
       </div>
     );
   };
 
   return (
-    <div className="w-full flex justify-end items-center mt-3">
-      {showEmbedTestimonialModal && <EmbedTestimonialModal testimonial={testimonial} setShowEmbedTestimonialModal={setShowEmbedTestimonialModal}/>}
-      <ShareButton />
-      <DeleteButton />
-      <EditButton />
-    </div>
+    <>
+      {showEmbedTestimonialModal && (
+        <EmbedTestimonialModal
+          testimonial={testimonial}
+          setShowEmbedTestimonialModal={setShowEmbedTestimonialModal}
+        />
+      )}
+      <div className="w-full flex justify-end items-center mt-3">
+        <ShareButton />
+        <DeleteButton />
+        <EditButton />
+      </div>
+    </>
   );
 };
 
