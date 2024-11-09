@@ -14,8 +14,8 @@ const EmbedTestimonialModal = ({
 }: EmbedTestimonialModalProps) => {
   console.log(testimonial);
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 backdrop-blur-[2px] flex justify-center items-center p-4">
-      <div className="h-[80vh] w-[80%] py-3 px-5 flex flex-col items-start overflow-y-auto bg-slate-300 rounded-md z-10">
+    <div className="w-screen h-screen fixed z-10 top-0 left-0 backdrop-blur-[2px] flex justify-center items-center p-4">
+      <div className="h-[80vh] w-[80%] py-3 px-5 flex flex-col items-start overflow-y-auto bg-slate-300 rounded-md ">
         <div className="flex flex-col w-full">
           <span
             className="w-full flex justify-end cursor-pointer"

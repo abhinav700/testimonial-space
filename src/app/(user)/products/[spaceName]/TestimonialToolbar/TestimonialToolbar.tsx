@@ -73,11 +73,14 @@ const TestimonialToolbar = ({
     return (
       <div
         ref={shareMenuRef}
-        className="text-sm max-h-fit mr-[250px] absolute mt-[50px] w-[200px] flex flex-col items-start bg-slate-200 rounded-md"
+        className="text-sm max-h-fit mr-[250px] absolute z-0 mt-[50px] w-[200px] flex flex-col items-start bg-slate-200 rounded-md"
       >
         <span
           className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center"
-          onClick={(e) => setShowEmbedTestimonialModal(true)}
+          onClick={(e) => {
+            setShowEmbedTestimonialModal(true);
+            setShowShareMenuOptions(false);
+          }}recent:///d1b81db65d4828d4c02e0539672edc87
         >
           <Code className="text-tiny mr-3" />
           Embed the testimonial
