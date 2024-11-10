@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import EmbedTestimonialModal from "@/components/EmbedTestimonialModal";
+import EmbedTestimonialModal from "@/app/(user)/products/[spaceName]/EmbedTestimonialModal";
 import { TestimonialType } from "@/lib/schemas/schema";
 import { Code, Link, PenIcon, Share2, Trash2 } from "lucide-react";
 import React, { SetStateAction, useEffect, useRef, useState } from "react";
@@ -80,7 +80,7 @@ const TestimonialToolbar = ({
           onClick={(e) => {
             setShowEmbedTestimonialModal(true);
             setShowShareMenuOptions(false);
-          }}recent:///d1b81db65d4828d4c02e0539672edc87
+          }}
         >
           <Code className="text-tiny mr-3" />
           Embed the testimonial

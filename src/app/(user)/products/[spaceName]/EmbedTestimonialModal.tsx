@@ -8,6 +8,19 @@ interface EmbedTestimonialModalProps {
   testimonial: TestimonialType;
 }
 
+
+const EmbedCode = ({ id }: { id: string }) => {
+  return (
+    <>
+      <p className="">{"<iframe>"}</p>
+      <p className="ml-2">
+        src=
+        <span className="text-[#40c43c]">{`"${process.env.NEXT_PUBLIC_BASE_URL}/embed/testimonial/${id}"`}</span>
+      </p>
+      <p>{"</iframe>"}</p>
+    </>
+  );
+};
 const EmbedTestimonialModal = ({
   testimonial,
   setShowEmbedTestimonialModal,
@@ -23,17 +36,21 @@ const EmbedTestimonialModal = ({
           >
             <X />
           </span>
+          <h1 className="text-2xl font-bold mb-5">
+            Embed this testimonial to your websites
+          </h1>
           <h1 className="text-lg font-bold">Live Preview</h1>
-          <EmbeddedTestimonial testimonialData={testimonial} />
+          
+          <iframe
+            className="min-h-[200px] max-h-[350px] w-full mt-2"
+            src={`${process.env.NEXT_PUBLIC_BASE_URL}/embed/testimonial/${testimonial.id}`}
+          ></iframe>
         </div>
 
         <div className="flex flex-col w-full">
           <h1 className="text-lg font-bold">Embed Code</h1>
-          <span className="bg-black w-full overflow-x-auto min-h-[100px] max-h-fit rounded-lg p-4 mt-3 text-white ">
-            <pre>
-              {`<iframe src="http://localhost:3000/embed/testimonial/${testimonial.id}"></iframe>`
-              }
-            </pre>
+          <span className="bg-[#141414] w-full overflow-x-auto min-h-[100px] max-h-fit rounded-lg p-4 mt-3 text-white ">
+            <EmbedCode id={testimonial.id} />
           </span>
         </div>
       </div>

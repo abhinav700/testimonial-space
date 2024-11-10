@@ -42,9 +42,8 @@ const page = () => {
       />
       <div className="flex flex-col items-center min-h-[100vh] max-h-fit mt-3">
         {space?.testimonials?.map((testimonial: TestimonialType) => {
-          return<>
-           <TestimonialItem key={testimonial.id} space={space} testimonial={testimonial} setSpace={setSpace}/>
-          </>
+          return <TestimonialItem key={testimonial.id} space={space} testimonial={testimonial} setSpace={setSpace}/>
+          
         })}
       </div>
     </>
