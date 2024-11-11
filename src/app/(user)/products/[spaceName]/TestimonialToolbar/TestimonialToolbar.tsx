@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import EmbedTestimonialModal from "@/app/(user)/products/[spaceName]/EmbedTestimonialModal";
+import EmbedTestimonialModal from "@/app/(user)/products/[spaceName]/EmbedTestimonialModal/EmbedTestimonialModal";
 import { TestimonialType } from "@/lib/schemas/schema";
 import { Code, Link, PenIcon, Share2, Trash2 } from "lucide-react";
 import React, { SetStateAction, useEffect, useRef, useState } from "react";

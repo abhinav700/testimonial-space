@@ -3,26 +3,23 @@ import { ReadonlyURLSearchParams } from "next/navigation"
 export const findAlignment = (alignment: string | null) => {
   switch (alignment) {
     case "right":
-      return "items-end";
-      break;
+      return "end";
     case "center":
-      return "items-center";
-      break;
+      return "center";
     default:
-      return "items-start";
-      break;
+      return "start";
   }
 }
 
 const useStyles = (searchParams: ReadonlyURLSearchParams) => {
-  const alignProperty= searchParams.get("alignment");
+  const alignment= searchParams.get("alignment");
   const backgroundColor = searchParams.get("backgroundColor");
-  console.log(backgroundColor)
   const style = {
-   alignItems: findAlignment(alignProperty),
-   backgroundColor: backgroundColor ? backgroundColor : "#ebf3cd",
+    alignItems: findAlignment(alignment),
+    backgroundColor: backgroundColor ? backgroundColor : "#ebf3cd",
   }
-
+  
+  console.log(style)
   return style
 }
 

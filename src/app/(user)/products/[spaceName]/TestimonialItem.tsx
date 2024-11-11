@@ -30,7 +30,7 @@ const TestimonialItem = ({
           handleDeleteTestimonial={handleDeleteTestimonial}
         />
       )}
-      <div className="w-[90%] sm:w-[70%] md:w-[50%] min-h-[150px] max-h-[500px] flex flex-col justify-between items-start p-4 my-2 rounded-md bg-[#ebf3d6]">
+      <div className="w-[90%] sm:w-[80%] md:w-[60%] min-h-[150px] max-h-[500px] flex flex-col justify-between items-start p-4 my-2 rounded-md bg-[#ebf3d6]">
         <p>{testimonial.description}</p>
         <div className="flex flex-col w-full mt-5">
           <div className="w-full flex justify-between">
