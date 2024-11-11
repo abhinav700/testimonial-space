@@ -1,5 +1,11 @@
 import React, { SetStateAction } from "react";
 import { DesignValuesType } from "../EmbedTestimonialModal";
+
+/**
+ * left -> alignItems: start;
+ * right -> alignItems: end;
+ * center -> alignItems: center
+ */
 interface AlignmentOptionType {
   name: string;
   value: "left" | "center" | "right";
@@ -32,10 +38,10 @@ const AlignmentOption = ({
   return (
     <div className="my-6 w-full font-bold text-lg flex flex-col items-start">
       <span>Alignment Options</span>
-      <div className="w-[50%] flex justify-between mt-4 flex-wrap ">
+      <div className="sm:w-[50%] w-[90%] flex justify-between mt-4 flex-wrap ">
         {alignmentOptionArray.map((item: AlignmentOptionType) => {
           return (
-            <div className="flex items-center">
+            <div className="flex items-center sm:mt-0 my-2" key={item.value}>
               <input
                 type="radio"
                 onChange={(e) => {
@@ -43,6 +49,7 @@ const AlignmentOption = ({
                 }}
                 value={item.value}
                 name="alignment"
+                defaultChecked={item.value === "left"}
                 id={item.value}
               />
               <label className="ml-3" htmlFor={item.value}>

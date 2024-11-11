@@ -21,7 +21,7 @@ const CustomizationToolbar = ({
   designValues,
   setDesignValues,
 }: CustomizationToolbarProps) => {
-
+  // property that we are currently customizing
   const [designOption, setDesignOption] = useState<ReactNode>(
     <AlignmentOption
       setDesignValues={setDesignValues}
@@ -29,6 +29,7 @@ const CustomizationToolbar = ({
     />
   );
 
+  // design properties that we can customize
   const DesignOptionsArray: DesignOptionType[] = [
     {
       name: "Alignment",
@@ -43,7 +44,12 @@ const CustomizationToolbar = ({
     {
       name: "Color",
       Icon: <Palette />,
-      Component: <ColorOptions />,
+      Component: (
+        <ColorOptions
+          setDesignValues={setDesignValues}
+          designValues={designValues}
+        />
+      ),
     },
     {
       name: "Text",
@@ -53,12 +59,12 @@ const CustomizationToolbar = ({
   ];
   return (
     <div className="flex flex-col items-start">
-      <div className="w-full my-5 flex justify-around">
+      <div className="w-[90%] my-5 flex justify-between flex-wrap">
         {DesignOptionsArray.map((item: DesignOptionType) => {
           return (
             <Button
               key={item.name}
-              className="p-4 min-w-[200px] min-h-[90px] bg-white hover:bg-slate-100 rounded-md flex flex-col justify-between items-center"
+              className="p-4 min-w-[200px] my-1 min-h-[90px] bg-white hover:bg-slate-100 rounded-md flex flex-col justify-between items-center"
               onClick={(e) => {
                 setDesignOption(item.Component);
               }}

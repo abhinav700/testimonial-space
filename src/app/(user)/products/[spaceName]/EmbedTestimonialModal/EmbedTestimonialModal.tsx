@@ -11,6 +11,8 @@ interface EmbedTestimonialModalProps {
 
 export interface DesignValuesType {
   alignment: "left" | "center" | "right";
+  textColor: string;
+  backgroundColor:string;  
 }
 
 const createQueryParams = (designValues: DesignValuesType) => {
@@ -52,6 +54,8 @@ const EmbedTestimonialModal = ({
 }: EmbedTestimonialModalProps) => {
   const [designValues, setDesignValues] = useState<DesignValuesType>({
     alignment: "left",
+    textColor:"000000",
+    backgroundColor: "ebf3cd"
   });
 
   return (
@@ -64,7 +68,7 @@ const EmbedTestimonialModal = ({
           >
             <X />
           </span>
-          <h1 className="text-xl font-bold mb-2">
+          <h1 className="text-xl font-bold mb-2 sm:mt-0 mt-4">
             Embed this testimonial to your websites
           </h1>
           <CustomizationToolbar
