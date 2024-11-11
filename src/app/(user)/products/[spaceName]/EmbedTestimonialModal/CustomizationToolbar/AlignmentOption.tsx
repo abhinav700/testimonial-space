@@ -30,7 +30,7 @@ const AlignmentOption = ({
   designValues,
 }: AlignmentOptionProps) => {
   return (
-    <div className="my-4 w-full font-bold text-lg flex flex-col items-start">
+    <div className="my-6 w-full font-bold text-lg flex flex-col items-start">
       <span>Alignment Options</span>
       <div className="w-[50%] flex justify-between mt-4 flex-wrap ">
         {alignmentOptionArray.map((item: AlignmentOptionType) => {
