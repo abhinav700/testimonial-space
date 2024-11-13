@@ -53,7 +53,7 @@ const EmbeddedTestimonial = ({ testimonialData }: embedProps) => {
   } else
     return (
       <div className="w-full h-full flex">
-        <div style={style} className="w-[90%] sm:w-[70%] md:w-[50%] min-h-[150px] max-h-[500px] flex flex-col justify-between p-4 my-2 rounded-md bg-[#ebf3d6]">
+        <div style={style} className="w-[90%] sm:w-[70%] md:w-[50%] min-h-[150px] max-h-fit flex flex-col justify-between p-4 my-2 rounded-md">
           <p>{testimonial.description}</p>
 
           <div className="flex flex-col" style={{alignItems:style.alignItems}}>

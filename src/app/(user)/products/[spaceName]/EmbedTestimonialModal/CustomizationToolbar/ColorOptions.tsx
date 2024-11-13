@@ -33,9 +33,9 @@ interface ColorOptionsProps {
   setDesignValues: React.Dispatch<SetStateAction<DesignValuesType>>;
 }
 const ColorOptions = ({ designValues, setDesignValues }: ColorOptionsProps) => {
-  const [textColorInput, setTextColorInput] = useState<string>("000000");
+  const [textColorInput, setTextColorInput] = useState<string>(designValues.textColor);
   const [backgroundColorInput, setBackgroundColorInput] =
-    useState<string>("ebf3cd");
+    useState<string>(designValues.backgroundColor);
 
   useEffect(() => {
     setDesignValues({

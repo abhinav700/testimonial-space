@@ -54,7 +54,12 @@ const CustomizationToolbar = ({
     {
       name: "Text",
       Icon: <LetterText className="text-tiny" />,
-      Component: <TextOptions />,
+      Component: (
+        <TextOptions
+          setDesignValues={setDesignValues}
+          designValues={designValues}
+        />
+      ),
     },
   ];
   return (

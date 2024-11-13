@@ -52,7 +52,7 @@ const AlignmentOption = ({
                 defaultChecked={item.value === "left"}
                 id={item.value}
               />
-              <label className="ml-3" htmlFor={item.value}>
+              <label className="ml-3 font-semibold text-[#242222]" htmlFor={item.value}>
                 {item.name}
               </label>
             </div>
