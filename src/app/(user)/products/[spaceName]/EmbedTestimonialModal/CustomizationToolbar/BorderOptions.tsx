@@ -91,7 +91,7 @@ const BorderOptions = ({
                 }}
                 value={item}
                 name="borderWidth"
-                checked={item === "small"}
+                checked={item === designValues.borderWidth}
                 id={`borderWidth-${item}`}
               />
               <label
