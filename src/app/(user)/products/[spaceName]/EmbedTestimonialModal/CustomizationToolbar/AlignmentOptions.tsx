@@ -31,7 +31,7 @@ interface AlignmentOptionProps {
   designValues: DesignValuesType;
 }
 
-const AlignmentOption = ({
+const AlignmentOptions = ({
   setDesignValues,
   designValues,
 }: AlignmentOptionProps) => {
@@ -49,8 +49,8 @@ const AlignmentOption = ({
                 }}
                 value={item.value}
                 name="alignment"
-                defaultChecked={item.value === "left"}
-                id={item.value}
+                checked={item.value === designValues.alignment}
+                id={item.value} 
               />
               <label className="ml-3 font-semibold text-[#242222]" htmlFor={item.value}>
                 {item.name}
@@ -63,4 +63,4 @@ const AlignmentOption = ({
   );
 };
 
-export default AlignmentOption;
+export default AlignmentOptions;

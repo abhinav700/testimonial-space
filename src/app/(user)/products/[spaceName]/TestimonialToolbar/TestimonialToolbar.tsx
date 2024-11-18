@@ -57,7 +57,6 @@ const TestimonialToolbar = ({
     const shareMenuRef = useRef<HTMLDivElement>(null);
 
     const handleClickOutside = (e: any) => {
-      console.log("handle click outside");
       if (shareMenuRef.current && !shareMenuRef.current.contains(e.target)) {
         setShowShareMenuOptions(false);
       }

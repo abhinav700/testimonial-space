@@ -1,10 +1,11 @@
-import { AlignLeft, LetterText, Palette, Text } from "lucide-react";
+import { AlignLeft, LetterText, Palette, Square, Text } from "lucide-react";
 import React, { ReactNode, SetStateAction, useState } from "react";
-import AlignmentOption from "./AlignmentOption";
+import AlignmentOption from "./AlignmentOptions";
 import ColorOptions from "./ColorOptions";
 import TextOptions from "./TextOptions";
 import Button from "@/components/Button";
 import { DesignValuesType } from "../EmbedTestimonialModal";
+import BorderOptions from "./BorderOptions";
 
 interface DesignOptionType {
   name: string;
@@ -56,6 +57,16 @@ const CustomizationToolbar = ({
       Icon: <LetterText className="text-tiny" />,
       Component: (
         <TextOptions
+          setDesignValues={setDesignValues}
+          designValues={designValues}
+        />
+      ),
+    },
+    {
+      name: "Border",
+      Icon: <Square className="text-tiny" />,
+      Component: (
+        <BorderOptions
           setDesignValues={setDesignValues}
           designValues={designValues}
         />

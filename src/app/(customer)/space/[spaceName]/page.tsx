@@ -10,7 +10,6 @@ import axios from "axios";
 import LoadingMessage from "@/components/LoadingMessage";
 
 const page = () => {
-  console.log("ReRenders");
   const params = useParams();
   const { spaceName } = params;
 
@@ -46,7 +45,6 @@ const page = () => {
         spaceId: space?.id,
       });
       const { testimonial } = await response.data;
-      console.log(testimonial);
       alert("operation successful");
     } catch (error) {
       console.log(error);
@@ -110,7 +108,6 @@ const page = () => {
             </ul>
             <Button
               onClick={(e) => {
-                console.log("clicked");
                 setShowTestimonialForm((prev: any) => true);
               }}
               className="w-full p-2 mt-16 bg-slate-950 font-semibold  text-white text-center rounded-lg hover:bg-slate-900 flex justify-center"

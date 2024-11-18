@@ -39,6 +39,7 @@ interface TextOptionsProps {
 }
 
 const TextOptions = ({ designValues, setDesignValues }: TextOptionsProps) => {
+  console.log("INSIDE TEXT OPTIONS", JSON.stringify(designValues))
   return (
     <div className="my-6 w-full font-bold text-lg flex flex-col items-start">
       {/* Setting font size */}
@@ -54,10 +55,10 @@ const TextOptions = ({ designValues, setDesignValues }: TextOptionsProps) => {
                 }}
                 value={item}
                 name="fontSize"
-                defaultChecked={item === "medium"}
-                id={item}
+                checked={item === designValues.fontSize}
+                id={`fontSize-${item}`}
               />
-              <label className="ml-1 text-md font-semibold text-[#242222]" htmlFor={item}>
+              <label className="ml-1 text-md font-semibold text-[#242222]" htmlFor={`fontSize-${item}`}>
                 {item.charAt(0).toUpperCase() + item.slice(1)}
               </label>
             </div>
@@ -77,10 +78,10 @@ const TextOptions = ({ designValues, setDesignValues }: TextOptionsProps) => {
                 }}
                 value={item}
                 name="fontWeight"
-                defaultChecked={item === "medium"}
-                id={item}
+                checked={item === designValues.fontWeight}
+                id={`fontWeight-${item}`}
               />
-              <label className="ml-1 font-semibold text-[#242222]" htmlFor={item}>
+              <label className="ml-1 font-semibold text-[#242222]" htmlFor={`fontWeight-${item}`}>
                 {item.charAt(0).toUpperCase() + item.slice(1)}
               </label>
             </div>

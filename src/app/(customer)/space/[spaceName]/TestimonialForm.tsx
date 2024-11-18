@@ -32,7 +32,6 @@ const TestimonialForm = ({
   testimonialFormData,
   handleSubmit
 }: TestimonialFormProps) => {
-  console.log(testimonialFormData);
   const handleOnChange = (
     e:
       | React.ChangeEvent<HTMLTextAreaElement>

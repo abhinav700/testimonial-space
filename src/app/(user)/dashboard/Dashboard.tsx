@@ -176,9 +176,9 @@ const Dashboard = () => {
               {showDeleteModal && <DeleteModal id={item.id}/>}
                 <div className="w-full rounded-lg p-4 cursor-pointer my-4 bg-[#dddddd] hover:bg-[#c2bfbf] flex justify-between items-center"
                   onClick={(e)=>{router.push(`/products/${item.spaceName}`)}}
+                  key={item.id}
                 >
                   <div
-                    key={item.id}
                     className="flex flex-col w-fit items-start"
                   >
                     <h2 className="text-xl font-bold">{item.spaceName}</h2>

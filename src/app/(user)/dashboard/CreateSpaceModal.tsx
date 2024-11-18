@@ -52,7 +52,6 @@ const ModalContainer = () => {
         ownerEmail: data!.user!.email,
       });
       const space = await response.data;
-      console.log(space);
       location.reload();
     } catch (error) {
       alert(error);

@@ -52,6 +52,45 @@ type styleOptions = {
   color?: string;
   fontSize?: string;
   fontWeight?: number;
+  border?: string;
+  borderRadius?: string;
+};
+
+const findBorderWidth = (
+  borderWidth: string | null,
+  showBorder: string | null
+) => {
+  if (showBorder !== "true") return "0px";
+  switch (borderWidth) {
+    case "small":
+      return "2px";
+    case "medium":
+      return "4px";
+    case "large":
+      return "6px";
+    case "x-large":
+      return "8px";
+    default:
+      return "2px";
+  }
+};
+const findBorderRadius = (borderRadius: string | null) => {
+  switch (borderRadius) {
+    case "none":
+      return "0px";
+    case "small":
+      return "2px";
+    case "medium":
+      return "6px";
+    case "large":
+      return "8px";
+    default:
+      return "0px";
+  }
+};
+
+const isValidHexNumber = (hexNumber: string | null) => {
+  return hexNumber && (hexNumber.length === 3 || hexNumber.length === 6);
 };
 
 const useStyles = (searchParams: ReadonlyURLSearchParams) => {
@@ -60,21 +99,41 @@ const useStyles = (searchParams: ReadonlyURLSearchParams) => {
   const textColor = searchParams.get("textColor");
   const fontSize = searchParams.get("fontSize");
   const fontWeight = searchParams.get("fontWeight");
+  const showBorder = searchParams.get("showBorder");
+  const borderRadius = searchParams.get("borderRadius");
+  const borderWidth = searchParams.get("borderWidth");
+  const borderColor = searchParams.get("borderColor");
 
   const [style, setStyle] = useState<styleOptions>({});
 
   useEffect(() => {
     setStyle({
       alignItems: findAlignment(alignment),
-      backgroundColor:
-        backgroundColor?.length == 6 ? `#${backgroundColor}` : "#ebf3cd",
-      color: textColor?.length == 6 ? `#${textColor}` : "#000000",
+      backgroundColor: isValidHexNumber(backgroundColor)
+        ? `#${backgroundColor}`
+        : "#ebf3cd",
+      color: isValidHexNumber(textColor) ? `#${textColor}` : "#000000",
       fontSize: findFontSize(fontSize),
       fontWeight: findFontWeight(fontWeight),
+      // Eg: 2px solid red
+      border: `${findBorderWidth(borderWidth, showBorder)} solid #${
+        isValidHexNumber(borderColor) ? borderColor : "000000"
+      }`,
+      borderRadius: findBorderRadius(borderRadius),
     });
-  }, [alignment, backgroundColor, textColor, fontSize, fontWeight]);
+  }, [
+    alignment,
+    backgroundColor,
+    textColor,
+    fontSize,
+    fontWeight,
+    showBorder,
+    borderRadius,
+    borderWidth,
+    borderColor
+  ]);
 
-  console.log(style);
+  // console.log(style);
   return style;
 };
 

@@ -1,6 +1,6 @@
 import EmbeddedTestimonial from "@/app/(embed)/embed/testimonial/[id]/page";
 import { TestimonialType } from "@/lib/schemas/schema";
-import { X } from "lucide-react";
+import { EggFriedIcon, X } from "lucide-react";
 import React, { SetStateAction, useState } from "react";
 import CustomizationToolbar from "./CustomizationToolbar/CustomizationToolbar";
 
@@ -15,11 +15,16 @@ export interface DesignValuesType {
   backgroundColor: string;
   fontSize: "tiny" | "small" | "medium" | "large" | "extra-large";
   fontWeight: "extra-light" | "light" | "medium" | "bold" | "extra-bold";
+  showBorder: boolean;
+  borderRadius: "none" | "small" | "medium" | "large";
+  borderWidth: "small" | "medium" | "large" | "x-large";
+  borderColor: string;
 }
 
 const createQueryParams = (designValues: DesignValuesType) => {
   let isFirstQueryParam = true;
   let queryParams = "";
+  // console.log(designValues);
   Object.keys(designValues).map((key) => {
     if (isFirstQueryParam) {
       isFirstQueryParam = false;
@@ -60,11 +65,15 @@ const EmbedTestimonialModal = ({
     backgroundColor: "ebf3cd",
     fontSize: "medium",
     fontWeight: "medium",
+    showBorder: false,
+    borderColor:"ABB8C3",
+    borderRadius: "none",
+    borderWidth:"small"
   });
-
+  console.log(`INSIDE EMBED TESTIMONIAL : ${JSON.stringify(designValues)}`)
   return (
     <div className="w-screen h-screen fixed z-10 top-0 left-0 backdrop-blur-[2px] flex justify-center items-center p-4">
-      <div className="h-[80vh] w-[80%] py-4 px-5 flex flex-col items-start overflow-y-auto bg-slate-300 rounded-md ">
+      <div className="h-[95vh] w-[80%] py-4 px-5 flex flex-col items-start overflow-y-auto bg-slate-300 rounded-md ">
         <div className="flex flex-col w-full">
           <span
             className="w-full flex justify-end cursor-pointer"
