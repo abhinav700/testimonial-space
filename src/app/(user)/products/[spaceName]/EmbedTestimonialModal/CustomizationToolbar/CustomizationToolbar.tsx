@@ -1,17 +1,30 @@
 import { AlignLeft, LetterText, Palette, Square, Text } from "lucide-react";
 import React, { ReactNode, SetStateAction, useState } from "react";
-import AlignmentOption from "./AlignmentOptions";
 import ColorOptions from "./ColorOptions";
 import TextOptions from "./TextOptions";
 import Button from "@/components/Button";
 import { DesignValuesType } from "../EmbedTestimonialModal";
 import BorderOptions from "./BorderOptions";
+import AlignmentOptions from "./AlignmentOptions";
 
-interface DesignOptionType {
-  name: string;
-  Icon: ReactNode;
-  Component: ReactNode;
-}
+// design properties we can customize
+type DesignOptionsType = "Alignment" | "Color" | "Text" | "Border";
+
+// corresponding icon for each property that we will display in buttons
+const designOptionIconMapping: { [key in DesignOptionsType]: ReactNode } = {
+  Alignment: <AlignLeft />,
+  Color: <Palette />,
+  Text: <LetterText className="text-tiny" />,
+  Border: <Square className="text-tiny" />,
+};
+
+// configuration/JSX that is displayed when a design option is selected for customization
+const designOptionConfigMapping = {
+  Alignment: AlignmentOptions,
+  Color: ColorOptions,
+  Text: TextOptions,
+  Border: BorderOptions,
+};
 
 interface CustomizationToolbarProps {
   designValues: DesignValuesType;
@@ -22,78 +35,33 @@ const CustomizationToolbar = ({
   designValues,
   setDesignValues,
 }: CustomizationToolbarProps) => {
-  // property that we are currently customizing
-  const [designOption, setDesignOption] = useState<ReactNode>(
-    <AlignmentOption
-      setDesignValues={setDesignValues}
-      designValues={designValues}
-    />
-  );
+  // design property that we are currently customizing
+  const [designOption, setDesignOption] =
+    useState<DesignOptionsType>("Alignment");
 
-  // design properties that we can customize
-  const DesignOptionsArray: DesignOptionType[] = [
-    {
-      name: "Alignment",
-      Icon: <AlignLeft />,
-      Component: (
-        <AlignmentOption
-          setDesignValues={setDesignValues}
-          designValues={designValues}
-        />
-      ),
-    },
-    {
-      name: "Color",
-      Icon: <Palette />,
-      Component: (
-        <ColorOptions
-          setDesignValues={setDesignValues}
-          designValues={designValues}
-        />
-      ),
-    },
-    {
-      name: "Text",
-      Icon: <LetterText className="text-tiny" />,
-      Component: (
-        <TextOptions
-          setDesignValues={setDesignValues}
-          designValues={designValues}
-        />
-      ),
-    },
-    {
-      name: "Border",
-      Icon: <Square className="text-tiny" />,
-      Component: (
-        <BorderOptions
-          setDesignValues={setDesignValues}
-          designValues={designValues}
-        />
-      ),
-    },
-  ];
+  const DesignConfigComponent = designOptionConfigMapping[designOption];
   return (
     <div className="flex flex-col items-start">
       <div className="w-[90%] my-5 flex justify-between flex-wrap">
-        {DesignOptionsArray.map((item: DesignOptionType) => {
-          return (
-            <Button
-              key={item.name}
-              className="p-4 min-w-[200px] my-1 min-h-[90px] bg-white hover:bg-slate-100 rounded-md flex flex-col justify-between items-center"
-              onClick={(e) => {
-                setDesignOption(item.Component);
-              }}
-            >
-              {item.Icon}
-              <p className="text-sm font-semibold text-[#292929]">
-                {item.name}
-              </p>
-            </Button>
-          );
-        })}
+        {(Object.keys(designOptionIconMapping) as DesignOptionsType[]).map(
+          (item) => {
+            return (
+              <Button
+                key={item}
+                className="p-4 min-w-[200px] my-1 min-h-[90px] bg-white hover:bg-slate-100 rounded-md flex flex-col justify-between items-center"
+                onClick={(e) => {
+                  setDesignOption(item);
+                }}
+              >
+                {designOptionIconMapping[item]}
+                <p className="text-sm font-semibold text-[#292929]">{item}</p>
+              </Button>
+            );
+          }
+        )}
       </div>
-      {designOption}
+      <DesignConfigComponent setDesignValues={setDesignValues} designValues={designValues}/>
+      
     </div>
   );
 };
