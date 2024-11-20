@@ -49,7 +49,7 @@ const page = () => {
         setShowEditSpaceModal={setShowEditSpaceModal}
       />
       <div className="flex flex-col items-center min-h-[100vh] max-h-fit mt-3">
-        {space?.testimonials?.map((testimonial: TestimonialType) => {
+        {space.testimonials?.length ? space?.testimonials?.map((testimonial: TestimonialType) => {
           return (
             <TestimonialItem
               key={testimonial.id}
@@ -60,7 +60,9 @@ const page = () => {
               setShowEditTestimonialModal={setShowEditTestimonialModal}
             />
           );
-        })}
+        }):
+        <h1 className="text-2xl font-bold mt-4">No Testimonials to display</h1>
+        }
       </div>
     </>
   );

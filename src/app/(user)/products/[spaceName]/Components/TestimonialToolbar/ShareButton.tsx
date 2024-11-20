@@ -11,7 +11,6 @@ interface ShareMenuOptionsProps {
 }
 
 interface ShareButtonProps {
-
   testimonial: TestimonialType;
 }
 
