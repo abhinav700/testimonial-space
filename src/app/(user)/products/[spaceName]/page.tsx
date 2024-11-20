@@ -15,6 +15,7 @@ const page = () => {
   const { spaceName } = params;
   const [loading, setLoading] = useState<boolean>(true);
   const [showEditSpaceModal, setShowEditSpaceModal] = useState<boolean>(false);
+  const [showEditTestimonialModal, setShowEditTestimonialModal] = useState<boolean>(false);
   const user = useSession();
   const { space, setSpace } = useFetchSpaceByName({
     setLoading,
@@ -40,6 +41,8 @@ const page = () => {
           space={space}
         />
       )}
+
+
       <Header
         totalTestimonials={space.testimonials ? space.testimonials.length : 0}
         spaceName={space.spaceName}
@@ -53,6 +56,8 @@ const page = () => {
               space={space}
               testimonial={testimonial}
               setSpace={setSpace}
+              showEditTestimonialModal={showEditTestimonialModal}
+              setShowEditTestimonialModal={setShowEditTestimonialModal}
             />
           );
         })}

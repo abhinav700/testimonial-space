@@ -1,15 +1,19 @@
 import Button from "@/components/Button";
 import { SpaceType, TestimonialType } from "@/lib/schemas/schema";
 import axios from "axios";
-import { X } from "lucide-react";
-import { space } from "postcss/lib/list";
-import React, { SetStateAction, useState } from "react";
+import { Trash2, X } from "lucide-react";
+import React, { useState } from "react";
 
 interface DeleteModalProps {
   id: string;
   setShowDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   handleDeleteTestimonial: (id: string) => void;
 }
+
+interface DeleteButtonProps {
+  testimonial: TestimonialType;
+}
+
 const DeleteModal = ({
   id,
   setShowDeleteModal,
@@ -50,15 +54,7 @@ const DeleteModal = ({
   );
 };
 
-
-interface useDeleteTestimonialItemProps {
-  setSpace: React.Dispatch<SetStateAction<SpaceType | null>>;
-  space: SpaceType;
-}
-const useDeleteTestimonialItem = ({
-  setSpace,
-  space,
-}: useDeleteTestimonialItemProps) => {
+const DeleteButton = ({ testimonial }: DeleteButtonProps) => {
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
 
   const handleDeleteTestimonial = async (id: string) => {
@@ -67,13 +63,7 @@ const useDeleteTestimonialItem = ({
       const data = await response.data;
 
       if (data.status == 200) {
-        const updatedData: SpaceType = {
-          ...space,
-          testimonials: space?.testimonials?.filter(
-            (item: any) => item.id != id
-          ),
-        };
-        setSpace(updatedData);
+        location.reload();
         alert(data.msg);
       } else {
         alert("operation failed");
@@ -86,7 +76,27 @@ const useDeleteTestimonialItem = ({
     }
   };
 
-  return {showDeleteModal, setShowDeleteModal, handleDeleteTestimonial, DeleteModal}
+  return (
+    <>
+     {showDeleteModal && (
+        <DeleteModal
+          id={testimonial.id}
+          setShowDeleteModal={setShowDeleteModal}
+          handleDeleteTestimonial={handleDeleteTestimonial}
+        />
+      )}
+      <span className="flex items-center text-md p-1 mx-1">
+        <Button
+          className="h-fit py-2 px-3 rounded-lg text-black text-md hover:bg-[#b3cec3] flex items-center justify-around"
+          onClick={(e) => {
+            setShowDeleteModal(true);
+          }}
+        >
+          <Trash2 />
+          <span className="ml-2">Delete</span>
+        </Button>
+      </span>
+    </>
+  );
 };
-
-export default useDeleteTestimonialItem;
+export default DeleteButton;

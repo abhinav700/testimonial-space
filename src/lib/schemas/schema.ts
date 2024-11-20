@@ -37,6 +37,7 @@ export const TestimonialFormDataSchema = z.object({
   description: z.string(),
   customerName: z.string(),
   customerEmail: z.string().email(),
+  date:z.optional(z.string())
 });
 
 
