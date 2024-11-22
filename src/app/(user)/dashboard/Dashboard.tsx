@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 import useFetchAllSpaces from "@/lib/hooks/space/useFetchAllSpaces";
 import useCreateUser from "@/lib/hooks/user/useCreateUser";
 import { SpaceType, User } from "@/lib/schemas/schema";
-import { MessageSquareIcon, Plus, Trash2, VideoIcon, X } from "lucide-react";
+import { LayoutIcon, MessageSquareIcon, Plus, Trash2, VideoIcon, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { ReactNode, useState } from "react";
 import CreateSpaceModal from "./CreateSpaceModal";
@@ -91,12 +91,12 @@ const Dashboard = () => {
     {
       title: "Total Testimonials",
       description: totalTestimonials,
-      endIcon: <VideoIcon />,
+      endIcon: <MessageSquareIcon />,
     },
     {
       title: "Total spaces",
       description: spaces ? spaces.length : 0,
-      endIcon: <MessageSquareIcon />,
+      endIcon: <LayoutIcon/>,
     },
   ];
 
@@ -131,7 +131,7 @@ const Dashboard = () => {
         <hr className="border-[2px] mt-10" />
 
         {/* Overview */}
-        <h1 className="md:text-3xl text-lg my-4 font-bold">Overview</h1>
+        <h1 className="md:text-2xl text-lg my-4 font-bold">Overview</h1>
         <div className="w-full flex flex-wrap justify-between">
           {user && showCreateSpaceModal && (
             <CreateSpaceModal
@@ -142,7 +142,7 @@ const Dashboard = () => {
           {overViewItems.map((item: OverViewItem, index) => (
             <div
               key={index}
-              className="w-[45%] rounded-lg mt-4 p-4 bg-[#e6ffd1] max-400px"
+              className="w-[45%] rounded-lg mt-4 p-3 bg-[#e6ffd1] max-400px"
             >
               <div className="flex justify-between">
                 <span className="text-lg font-medium text-slate-800">
@@ -150,21 +150,21 @@ const Dashboard = () => {
                 </span>
                 {item.endIcon}
               </div>
-              <span className="font-bold text-2xl my-2">
+              <span className="font-bold text-xl my-2">
                 {item.description}
               </span>
             </div>
           ))}
         </div>
         {/* Spaces */}
-        <div className="flex justify-between items-center mt-6 w-full">
-          <h1 className="sm:text-3xl text-lg font-bold">Spaces</h1>
+        <div className="flex justify-between items-center my-6 w-full">
+          <h1 className="sm:text-2xl text-lg font-bold">Spaces</h1>
           <Button
-            className="p-3 text-white cursor-pointer flex justify-between items-center bg-[#207027] rounded-lg hover:bg-[#168f3b]"
+            className="px-1 py-2 text-white cursor-pointer flex justify-between items-center bg-[#207027] rounded-lg hover:bg-[#168f3b]"
             onClick={handleShowCreateSpaceModal}
           >
             <span className="mr-2">
-              <Plus />
+              <Plus className="text-sm" />
             </span>
             <span>Create new space</span>
           </Button>
