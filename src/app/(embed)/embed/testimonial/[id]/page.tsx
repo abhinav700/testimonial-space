@@ -52,16 +52,16 @@ const EmbeddedTestimonial = ({ testimonialData }: embedProps) => {
     );
   } else
     return (
-      <div className="w-full h-full flex">
-        <div style={style} className="w-[90%] sm:w-[70%] md:w-[50%] min-h-[150px] max-h-fit flex flex-col justify-between p-4 my-2 rounded-md">
+      // <div className="min-w-[200px] max-w-fit flex-grow min-h-[300px] max-h-fit flex">
+        <div style={style} className="lg:min-w-[320px] lg:max-w-[500px] md:min-w-[300px] min-w-[200px] flex-grow min-h-[150px] max-h-fit flex flex-col justify-between p-4 m-1 rounded-md">
           <p>{testimonial.description}</p>
 
           <div className="flex flex-col" style={{alignItems:style.alignItems}}>
-            <span>{testimonial.customerName}</span>
-            <span>{new Date(testimonial.createdAt!).toLocaleString()}</span>
+            <span className="text-wrap">{testimonial.customerName}</span>
+            <span className="text-wrap">{new Date(testimonial.createdAt!).toLocaleString()}</span>
           </div>
         </div>
-      </div>
+        // </div>
     );
 };
 

@@ -3,6 +3,7 @@ import { TestimonialType } from "@/lib/schemas/schema";
 import { EggFriedIcon, X } from "lucide-react";
 import React, { SetStateAction, useState } from "react";
 import CustomizationToolbar from "./CustomizationToolbar/CustomizationToolbar";
+import EmbedCode from "@/components/EmbedCode";
 
 interface EmbedTestimonialModalProps {
   setShowEmbedTestimonialModal: React.Dispatch<SetStateAction<boolean>>;
@@ -36,25 +37,6 @@ const createQueryParams = (designValues: DesignValuesType) => {
   return queryParams;
 };
 
-const EmbedCode = ({
-  id,
-  designValues,
-}: {
-  id: string;
-  designValues: DesignValuesType;
-}) => {
-  const queryParams = createQueryParams(designValues);
-  return (
-    <>
-      <p className="">{"<iframe>"}</p>
-      <p className="ml-2 w-full">
-        src=
-        <span className="text-[#40c43c] w-full">{`"${process.env.NEXT_PUBLIC_BASE_URL}/embed/testimonial/${id}?${queryParams}"`}</span>
-      </p>
-      <p>{"</iframe>"}</p>
-    </>
-  );
-};
 const EmbedTestimonialModal = ({
   testimonial,
   setShowEmbedTestimonialModal,
@@ -66,11 +48,11 @@ const EmbedTestimonialModal = ({
     fontSize: "medium",
     fontWeight: "medium",
     showBorder: false,
-    borderColor:"ABB8C3",
+    borderColor: "ABB8C3",
     borderRadius: "none",
-    borderWidth:"small"
+    borderWidth: "small",
   });
-  console.log(`INSIDE EMBED TESTIMONIAL : ${JSON.stringify(designValues)}`)
+  console.log(`INSIDE EMBED TESTIMONIAL : ${JSON.stringify(designValues)}`);
   return (
     <div className="w-screen h-screen fixed z-10 top-0 left-0 backdrop-blur-[2px] flex justify-center items-center p-4">
       <div className="h-[95vh] w-[80%] py-4 px-5 flex flex-col items-start overflow-y-auto bg-slate-300 rounded-md ">
@@ -97,12 +79,14 @@ const EmbedTestimonialModal = ({
             }?${createQueryParams(designValues)}`}
           ></iframe>
         </div>
-
+            {/* Displaying the code to embed testimonial */}
         <div className="flex flex-col w-full">
           <h1 className="text-lg font-bold">Embed Code</h1>
-          <span className="bg-[#141414] w-full overflow-x-auto min-h-[100px] max-h-fit rounded-lg p-4 mt-3 text-white ">
-            <EmbedCode id={testimonial.id} designValues={designValues} />
-          </span>
+            <EmbedCode
+              embedPath={`embed/testimonial/${
+                testimonial.id
+              }?${createQueryParams(designValues)}`}
+            />
         </div>
       </div>
     </div>

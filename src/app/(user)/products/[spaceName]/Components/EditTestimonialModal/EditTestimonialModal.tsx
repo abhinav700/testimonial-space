@@ -54,7 +54,6 @@ const EditTestimonialModal = ({
         createdAt: `${testimonialFormData.date}:00.000Z`,
       });
       const data = await response.data;
-      console.log(data);
       if(data.status == 200){
         location.reload();
       }

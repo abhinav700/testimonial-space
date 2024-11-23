@@ -25,7 +25,7 @@ const findFontSize = (fontSize: string | null) => {
     case "extra-large":
       return "24px";
     default:
-      return "20px";
+      return "14px";
   }
 };
 

@@ -106,7 +106,7 @@ const Dashboard = () => {
       id="dashboard"
     >
       <div className="w-[80%] h-full">
-        <div className="flex flex-wrap justify-around items-center max-h-[700px] p-4 bg-[hsl(116,100%,97%)]">
+        <div className="flex rounded-md flex-wrap justify-around items-center max-h-[700px] p-4 bg-[hsl(116,100%,97%)]">
           {/* Demo message which appears at top of dashboard */}
           <div className="max-w-[40%] min-w-[30%] h-full mx-2 my-4 flex flex-col justify-between rounded-lg bg-[#086126] p-5">
             <div>
@@ -160,7 +160,7 @@ const Dashboard = () => {
         <div className="flex justify-between items-center my-6 w-full">
           <h1 className="sm:text-2xl text-lg font-bold">Spaces</h1>
           <Button
-            className="px-1 py-2 text-white cursor-pointer flex justify-between items-center bg-[#207027] rounded-lg hover:bg-[#168f3b]"
+            className="p-2 text-white cursor-pointer flex justify-between items-center bg-[#207027] rounded-lg hover:bg-[#168f3b]"
             onClick={handleShowCreateSpaceModal}
           >
             <span className="mr-2">

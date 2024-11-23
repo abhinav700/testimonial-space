@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "42e37e74-9705-4118-b183-50ecb817ca5d",
+        "_postman_id": "592973e8-9456-41de-91ca-f4d3eb09bca0",
         "name": "testimonial",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -11,7 +11,7 @@
             "request": {
                 "method": "GET",
                 "url": {
-                    "raw": "http://localhost:3000/api/testimonial/fetchAll?email=abhinavagrawal700@gmail.com&spaceId=7efa0a33-9e0d-4626-ab28-cd4119fbc3be",
+                    "raw": "http://localhost:3000/api/testimonial/fetchAll?email=abhinavagrawal700@gmail.com&spaceId=a26c155c-4339-43aa-b64a-f042d3911da6&customerName=updatedCustomerName&createdAt",
                     "query": [
                         {
                             "key": "email",
@@ -19,7 +19,15 @@
                         },
                         {
                             "key": "spaceId",
-                            "value": "7efa0a33-9e0d-4626-ab28-cd4119fbc3be"
+                            "value": "a26c155c-4339-43aa-b64a-f042d3911da6"
+                        },
+                        {
+                            "key": "customerName",
+                            "value": "updatedCustomerName"
+                        },
+                        {
+                            "key": "createdAt",
+                            "value": ""
                         }
                     ],
                     "variable": [],
@@ -85,6 +93,34 @@
                         "localhost"
                     ],
                     "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "Edit",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://localhost:3000/api/testimonial/edit",
+                    "path": [
+                        "api",
+                        "testimonial",
+                        "edit"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"id\": \"e70e4970-d4ff-4a7c-a73c-57fe5dcdce2c\",\n  \"customerName\": \"some updated name\",\n  \"description\": \"some updated description\",\n  \"createdAt\": \"2024-10-19T03:50:36.078Z\"\n}"
                 }
             }
         }
