@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 
@@ -12,7 +12,6 @@ const SpaceSchema = z.object({
 
 export async function POST(req: NextRequest){
   try {
-    const prisma = new PrismaClient();
     const data =  SpaceSchema.parse(await req.json())
     const {ownerEmail, header, customMessage, questions, spaceName} = data; 
     

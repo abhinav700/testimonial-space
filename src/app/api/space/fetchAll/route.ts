@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -6,7 +6,6 @@ export const emailSchema = z.string().email("invalid email")
 
 export async function GET(req: NextRequest){
   try {
-    const prisma = new PrismaClient();
     // To do : Replace with user id
     const email = emailSchema.parse(req.nextUrl.searchParams.get("email"));
     

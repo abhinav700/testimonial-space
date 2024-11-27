@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server"
 import {z} from "zod";
 
@@ -9,7 +9,6 @@ const UserDataSchema = z.object({
 
 export async function POST(req: NextRequest, response:NextResponse){
   try {
-    const prisma =  new PrismaClient();
     const {email, name}=  UserDataSchema.parse((await req.json()))
     
     const user = await prisma.user.findFirst({

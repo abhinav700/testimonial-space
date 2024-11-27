@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -11,7 +11,6 @@ const TestimonialSchema = z.object({
 
 export async function POST(req: NextRequest, res: NextResponse){
   try {
-    const prisma = new PrismaClient();
     const {description, customerName, customerEmail, spaceId} = TestimonialSchema.parse(await (req.json()));
     const space = await prisma.space.findFirst({
       where:{

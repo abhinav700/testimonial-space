@@ -1,9 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest){
   try {
-    const prisma =  new PrismaClient();
     const spaceName:string = req.nextUrl.searchParams.get("spaceName")!;
     const space = await prisma.space.findFirst({
       where:{

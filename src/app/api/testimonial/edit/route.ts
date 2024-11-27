@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(req: NextRequest){
-  const prisma = new PrismaClient();
   try {
     const {id, createdAt, customerName, description} = await req.json();
     const oldTestimonial = await prisma.testimonial.findFirst({

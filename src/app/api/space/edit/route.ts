@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export  async function PUT(req: NextRequest){
-  const prisma = new PrismaClient();
   try {
     const {spaceName, updatedSpaceName, customMessage, header, questions, ownerEmail} = await req.json();
     const space = await prisma.space.findFirst({

@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(req :NextRequest){
@@ -6,7 +6,6 @@ export async function DELETE(req :NextRequest){
   if(!id)
       return NextResponse.json({status: 400, msg: "invalid id"});
   try {
-    const prisma = new PrismaClient();
     const space = await prisma.space.findFirst({
       where:{
         id

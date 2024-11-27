@@ -1,9 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest){
   try {
-    const prisma = new PrismaClient();
     const id = req.nextUrl.searchParams.get("id");
     const testimonial = await prisma.testimonial.findFirst({
       where: {

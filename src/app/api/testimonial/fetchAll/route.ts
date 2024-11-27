@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -8,7 +8,6 @@ const SpaceIdSchema = z.string();
 export async function GET(req: NextRequest){
   // Todo : Replace with singleton pattern.
   try {
-    const prisma = new PrismaClient()
     const email = EmailSchema.parse(req.nextUrl.searchParams.get('email'));
     const spaceId = SpaceIdSchema.parse(req.nextUrl.searchParams.get("spaceId"));
 
