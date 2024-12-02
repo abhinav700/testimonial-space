@@ -20,6 +20,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/prisma/*": ["./prisma/*"],
+      "@redis/*": ["./redis/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

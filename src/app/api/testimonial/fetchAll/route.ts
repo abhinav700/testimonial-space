@@ -1,45 +1,57 @@
 import { prisma } from "@/prisma/client";
+import { redisClient } from "@redis/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 const EmailSchema = z.string().email("invalid email");
 const SpaceIdSchema = z.string();
 
-export async function GET(req: NextRequest){
+export async function GET(req: NextRequest) {
   // Todo : Replace with singleton pattern.
   try {
-    const email = EmailSchema.parse(req.nextUrl.searchParams.get('email'));
-    const spaceId = SpaceIdSchema.parse(req.nextUrl.searchParams.get("spaceId"));
+    const email = EmailSchema.parse(req.nextUrl.searchParams.get("email"));
+    const spaceId = SpaceIdSchema.parse(
+      req.nextUrl.searchParams.get("spaceId")
+    );
 
     const user = await prisma.user.findFirst({
       where: {
-          email
-      }
+        email,
+      },
     });
 
-    if(!user)
-      NextResponse.json({msg:"owner does not exist", status: 404});
+    if (!user) NextResponse.json({ msg: "owner does not exist", status: 404 });
 
     const space = await prisma.space.findFirst({
       where: {
         id: spaceId,
-        ownerEmail: email
-      }
+        ownerEmail: email,
+      },
     });
 
-    if(!space)
-      NextResponse.json({msg:"space does not exist", status: 404});
+    if (!space) NextResponse.json({ msg: "space does not exist", status: 404 });
 
-    const testimonials = await prisma.testimonial.findMany({
-      where: {
-        spaceId
-      }
-    })
+    let testimonials: Object | null;
 
-    return NextResponse.json({testimonials, status: 200})
+    /**
+     * caching testimonials belonging to a particular space
+     */
+    const redisKey: string = `testimonials[space]:${spaceId}`;
+    const cachedData = await redisClient.get(redisKey);
 
+    if (cachedData != null) testimonials = await JSON.parse(cachedData);
+    else {
+      testimonials = await prisma.testimonial.findMany({
+        where: {
+          spaceId,
+        },
+      });
+      await redisClient.setex(redisKey, 2*3600, JSON.stringify(testimonials));
+    }
+
+    return NextResponse.json({ testimonials, status: 200 });
   } catch (error) {
     console.log(error);
-    NextResponse.json({msg: error, status: 500})
+    NextResponse.json({ msg: error, status: 500 });
   }
 }

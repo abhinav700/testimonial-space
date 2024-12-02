@@ -11,6 +11,7 @@
   "dependencies": {
     "@prisma/client": "^5.20.0",
     "axios": "^1.7.7",
+    "ioredis": "^5.4.1",
     "lucide-react": "^0.453.0",
     "next": "14.2.13",
     "next-auth": "^4.24.8",
@@ -19,7 +20,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.17.9",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "commitizen": "^4.3.1",
