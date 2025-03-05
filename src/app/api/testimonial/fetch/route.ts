@@ -10,14 +10,7 @@ export async function GET(req: NextRequest) {
     /**
      * fetching the testimonial corresponding to the testimonial Id
      */
-    const cachedData: string | null = await redisClient.get(redisKey);
-
-    let testimonial: Object | null;
-
-    if (cachedData != null) {
-      testimonial = await JSON.parse(cachedData);
-    } else {
-      testimonial = await prisma.testimonial.findFirst({
+      let testimonial = await prisma.testimonial.findFirst({
         where: {
           id: id as string,
         },
@@ -28,7 +21,6 @@ export async function GET(req: NextRequest) {
         2 * 3600,
         JSON.stringify(testimonial)
       );
-    }
 
     if (!testimonial)
       return NextResponse.json({

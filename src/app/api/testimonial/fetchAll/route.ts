@@ -31,23 +31,11 @@ export async function GET(req: NextRequest) {
 
     if (!space) NextResponse.json({ msg: "space does not exist", status: 404 });
 
-    let testimonials: Object | null;
-
-    /**
-     * caching testimonials belonging to a particular space
-     */
-    const redisKey: string = `testimonials[space]:${spaceId}`;
-    const cachedData = await redisClient.get(redisKey);
-
-    if (cachedData != null) testimonials = await JSON.parse(cachedData);
-    else {
-      testimonials = await prisma.testimonial.findMany({
+    let testimonials = await prisma.testimonial.findMany({
         where: {
           spaceId,
         },
       });
-      await redisClient.setex(redisKey, 2*3600, JSON.stringify(testimonials));
-    }
 
     return NextResponse.json({ testimonials, status: 200 });
   } catch (error) {

@@ -5,19 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     const spaceName: string = req.nextUrl.searchParams.get("spaceName")!;
-
-    /**
-     * storing the data related to a space
-     */
-    const redisKey: string = `space[name]:${spaceName}`;
-    const cachedData = await redisClient.get(redisKey);
-
-    let space;
-
-    if (cachedData != null) {
-      space = await JSON.parse(cachedData);
-    } else {
-      space = await prisma.space.findFirst({
+      let space = await prisma.space.findFirst({
         where: {
           spaceName,
         },
@@ -25,8 +13,6 @@ export async function GET(req: NextRequest) {
           testimonials: true,
         },
       });
-      await redisClient.setex(redisKey, 2 * 3600, JSON.stringify(space));
-    }
     if (!space)
       return NextResponse.json({ msg: "Space does not exist", status: 401 });
 

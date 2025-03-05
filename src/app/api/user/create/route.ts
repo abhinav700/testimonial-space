@@ -11,26 +11,15 @@ const UserDataSchema = z.object({
 export async function POST(req: NextRequest, response: NextResponse) {
   try {
     const { email, name } = UserDataSchema.parse(await req.json());
-    const redisKey = `user:${JSON.stringify({ email, name })}`;
 
-    const cachedData: string | null = await redisClient.get(redisKey);
+   
 
-    let user;
-
-    /**
-     * if data is not cached, we check in the database
-     */
-    if (cachedData != null) {
-      user = await JSON.parse(cachedData);
-    } else {
-      user = await prisma.user.findFirst({
+    let  user = await prisma.user.findFirst({
         where: {
           email,
         },
       });
 
-      await redisClient.setex(redisKey, 2 * 3600, JSON.stringify(user));
-    }
 
     if (user)
       return NextResponse.json({
