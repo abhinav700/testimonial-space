@@ -1,3 +1,4 @@
+"use client"
 import useFetchSpaceByName from "@/app/(customer)/space/[spaceName]/useFetchSpaceByName";
 import TestimonialItem from "@/app/(user)/products/[spaceName]/Components/TestimonialItem";
 import LoadingMessage from "@/components/LoadingMessage";
