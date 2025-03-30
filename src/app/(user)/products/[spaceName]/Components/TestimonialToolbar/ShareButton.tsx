@@ -41,7 +41,7 @@ const ShareMenuOptions = ({
     >
       <span
         className="p-2 hover:bg-slate-300 w-full text-left cursor-pointer flex items-center"
-        onClick={(e) => {
+        onClick={() => {
           setShowEmbedTestimonialModal(true);
           setShowShareMenuOptions(false);
         }}
@@ -80,7 +80,7 @@ const ShareButton = ({
       <div className="flex flex-col">
         <Button
           className="h-fit py-2 px-3 rounded-lg text-black text-md hover:bg-[#b3cec3] flex items-center justify-around"
-          onClick={(e) => {
+          onClick={() => {
             setShowShareMenuOptions(!showShareMenuOptions);
           }}
         >

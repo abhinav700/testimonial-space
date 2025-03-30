@@ -77,7 +77,7 @@ const EmbedWidgets = ({space}: EmbedWidgetsProps) => {
           />
             {/* // Clicking on the option should open a modal for corresponding widget */}
             <div
-              onClick={(e) => {
+              onClick={() => {
                 setActiveEmbedWidget(item);
               }}
               className="px-5 py-2 cursor-pointer hover:bg-slate-200 rounded-md flex items-center"

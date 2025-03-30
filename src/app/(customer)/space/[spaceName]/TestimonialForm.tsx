@@ -2,7 +2,7 @@
 import Button from "@/components/Button";
 import { TestimonialFormDataType } from "@/lib/schemas/schema";
 import { X } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 interface TestimonialFormProps {
   spaceId: string;
@@ -25,7 +25,7 @@ interface TestimonialFormProps {
 }
 
 const TestimonialForm = ({
-  spaceId,
+  // spaceId,
   setShowTestimonialForm,
   questions,
   setTestimonialFormData,
@@ -48,7 +48,7 @@ const TestimonialForm = ({
       <div className="min-h-[200px] max-h-fit sm:w-[80%] md:w-[40%] w-full flex flex-col items-start bg-slate-200 rounded-lg p-5 mt-5 overflow-y-scroll">
         <span className="w-full flex justify-end">
           <X
-            onClick={(e) => {
+            onClick={() => {
               setShowTestimonialForm(false);
             }}
             className="text-[#9e9a9a] cursor-pointer"
@@ -62,7 +62,7 @@ const TestimonialForm = ({
         </span>
         <ul className="ml-4 mt-3">
           {questions &&
-            questions.map((item: string, index: number) => (
+            questions.map((item: string) => (
               <li key={item} className="mt-2 list-disc">
                 {item}
               </li>
@@ -105,7 +105,7 @@ const TestimonialForm = ({
 
           <span className="w-full flex justify-end mt-7">
             <Button
-              onClick={(e) => {
+              onClick={() => {
                 setShowTestimonialForm(false);
               }}
               className="py-2 px-3 mx-2 border-[1px] rounded-lg border-[#aaaaaa] hover:bg-[#dfdbdb]"

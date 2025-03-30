@@ -18,7 +18,7 @@ const NavBar = () => {
 
   return (
     <nav className="flex justify-between items-center py-3 w-full px-3">
-      <span onClick={(e)=>{router.push("/")}} className="md:text-xl text-lg font-bold text-green-600 cursor-pointer">
+      <span onClick={()=>{router.push("/")}} className="md:text-xl text-lg font-bold text-green-600 cursor-pointer">
         Testimonial Space
       </span>
 
@@ -29,7 +29,7 @@ const NavBar = () => {
             <Image className="rounded-full hover:opacity-90 cursor-pointer" src={profileImageUrl} width={40} height={40} alt="profile image"/>}
             <Button
               className="bg-green-700 text-white font-semibold mx-4 p-2 hover:bg-green-900 rounded-md"
-              onClick={(e) => {
+              onClick={() => {
                 signOut({
                   redirect: true,
                   callbackUrl: '/'
@@ -42,7 +42,7 @@ const NavBar = () => {
         ) : (
           <Button
             className="bg-green-700 text-white font-semibold mx-2 px-2 py-2 hover:bg-green-900 rounded-md"
-            onClick={(e) => {
+            onClick={() => {
               signIn();
             }}
           >

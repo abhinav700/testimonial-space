@@ -44,7 +44,7 @@ const AlignmentOptions = ({
             <div className="flex items-center sm:mt-0 my-2" key={item.value}>
               <input
                 type="radio"
-                onChange={(e) => {
+                onChange={() => {
                   setDesignValues({ ...designValues, alignment: item.value });
                 }}
                 value={item.value}

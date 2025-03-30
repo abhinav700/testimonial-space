@@ -50,7 +50,7 @@ const TextOptions = ({ designValues, setDesignValues }: TextOptionsProps) => {
             <div className="flex items-center sm:mt-0 my-2  mr-4 flex-wrap" key={item}>
               <input
                 type="radio"
-                onChange={(e) => {
+                onChange={() => {
                   setDesignValues({ ...designValues, fontSize: item });
                 }}
                 value={item}
@@ -73,7 +73,7 @@ const TextOptions = ({ designValues, setDesignValues }: TextOptionsProps) => {
             <div className="flex items-center sm:mt-0 my-2 mr-4 flex-wrap" key={item}>
               <input
                 type="radio"
-                onChange={(e) => {
+                onChange={() => {
                   setDesignValues({ ...designValues, fontWeight: item });
                 }}
                 value={item}

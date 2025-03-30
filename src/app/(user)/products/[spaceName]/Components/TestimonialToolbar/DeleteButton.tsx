@@ -26,7 +26,7 @@ const DeleteModal = ({
       <div className="max-h-[500px] min-h-[200px] w-[30%] flex flex-col items-center bg-slate-200 rounded-lg">
         <span className="w-full flex justify-end px-4 mt-1">
           <X
-            onClick={(e) => setShowDeleteModal(false)}
+            onClick={() => setShowDeleteModal(false)}
             className="hover:bg-opacity-60 cursor-pointer"
           />
         </span>
@@ -36,13 +36,13 @@ const DeleteModal = ({
         <div className="flex w-[300px] justify-around h-full mt-8">
           <Button
             className="py-2 px-3 bg-red-700 hover:bg-red-800 text-white cursor-pointer text-xl rounded-lg"
-            onClick={(e) => handleDeleteTestimonial(id)}
+            onClick={() => handleDeleteTestimonial(id)}
           >
             Yes
           </Button>
           <Button
             className="py-2 px-4 bg-blue-700 hover:bg-blue-800 text-white cursor-pointer text-xl rounded-lg"
-            onClick={(e) => {
+            onClick={() => {
               setShowDeleteModal(false);
             }}
           >
@@ -88,7 +88,7 @@ const DeleteButton = ({ testimonial }: DeleteButtonProps) => {
       <span className="flex items-center text-md p-1 mx-1">
         <Button
           className="h-fit py-2 px-3 rounded-lg text-black text-md hover:bg-[#b3cec3] flex items-center justify-around"
-          onClick={(e) => {
+          onClick={() => {
             setShowDeleteModal(true);
           }}
         >

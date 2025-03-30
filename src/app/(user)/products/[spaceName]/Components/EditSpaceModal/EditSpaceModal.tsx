@@ -8,7 +8,6 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Space from "@/components/Space";
-import { Session } from "next-auth";
 // space name
 // header title
 // custom message

@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 import useFetchAllSpaces from "@/lib/hooks/space/useFetchAllSpaces";
 import useCreateUser from "@/lib/hooks/user/useCreateUser";
 import { SpaceType, User } from "@/lib/schemas/schema";
-import { LayoutIcon, MessageSquareIcon, Plus, Trash2, VideoIcon, X } from "lucide-react";
+import { LayoutIcon, MessageSquareIcon, Plus, Trash2, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { ReactNode, useState } from "react";
 import CreateSpaceModal from "./CreateSpaceModal";
@@ -38,15 +38,15 @@ const Dashboard = () => {
       <div className="fixed top-0 left-0 w-full h-full backdrop-blur-sm flex items-center justify-center">
       <div className="max-h-[500px] min-h-[200px] w-[30%] flex flex-col items-center bg-slate-200 rounded-lg">
         <span className="w-full flex justify-end px-4 mt-1">
-        <X onClick={(e)=> setShowDeleteModal(false)} className="hover:bg-opacity-60 cursor-pointer"/>
+        <X onClick={()=> setShowDeleteModal(false)} className="hover:bg-opacity-60 cursor-pointer"/>
 
         </span>
           <h1 className="text-2xl font-bold mt-4">Are you sure you want to delete this?</h1>
           <div className="flex w-[300px] justify-around h-full mt-8">
-            <Button className="py-2 px-3 bg-red-700 hover:bg-red-800 text-white cursor-pointer text-xl rounded-lg" onClick={(e) => handleDeleteSpace(id)}>Yes</Button>
+            <Button className="py-2 px-3 bg-red-700 hover:bg-red-800 text-white cursor-pointer text-xl rounded-lg" onClick={() => handleDeleteSpace(id)}>Yes</Button>
             <Button
               className="py-2 px-4 bg-blue-700 hover:bg-blue-800 text-white cursor-pointer text-xl rounded-lg"
-              onClick={(e) => {
+              onClick={() => {
 
                 setShowDeleteModal(false);
               }}
@@ -175,7 +175,7 @@ const Dashboard = () => {
               <>
               {showDeleteModal && <DeleteModal id={item.id}/>}
                 <div className="w-full rounded-lg p-4 cursor-pointer my-4 bg-[#dddddd] hover:bg-[#c2bfbf] flex justify-between items-center"
-                  onClick={(e)=>{router.push(`/products/${item.spaceName}`)}}
+                  onClick={()=>{router.push(`/products/${item.spaceName}`)}}
                   key={item.id}
                 >
                   <div
@@ -189,7 +189,7 @@ const Dashboard = () => {
                   </div>
                   <Button
                     className="bg-red-600 h-fit py-2 px-3 rounded-lg text-white  hover:bg-red-700 flex items-center justify-around"
-                    onClick={(e) => {
+                    onClick={() => {
                       e.stopPropagation()
                       setShowDeleteModal(true);
                     }}

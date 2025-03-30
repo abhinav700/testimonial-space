@@ -133,7 +133,7 @@ const CreateSpaceModal = ({ user, setVisible }: CreateSpaceModalProps) => {
         <div className="w-full">
           <span
             className="w-full flex justify-end hover:opacity-80 cursor-pointer"
-            onClick={(e) => setVisible(false)}
+            onClick={() => setVisible(false)}
           >
             <X />
           </span>

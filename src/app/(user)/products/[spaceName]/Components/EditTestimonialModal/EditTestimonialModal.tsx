@@ -68,7 +68,7 @@ const EditTestimonialModal = ({
       <div className="lg:w-[35%] md:w-[45%] sm:w-[60%] min-h-[80%] max-h-[90%] rounded-md p-5 bg-slate-400 overflow-y-auto">
         <span
           className="flex w-full justify-end cursor-pointer"
-          onClick={(e) => {
+          onClick={() => {
             setShowEditTestimonialModal(false);
           }}
         >

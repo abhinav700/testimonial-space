@@ -63,7 +63,7 @@ const EmbedTestimonialModal = ({
         <div className="flex flex-col w-full">
           <span
             className="w-full flex justify-end cursor-pointer"
-            onClick={(e) => setShowEmbedTestimonialModal(false)}
+            onClick={() => setShowEmbedTestimonialModal(false)}
           >
             <X />
           </span>

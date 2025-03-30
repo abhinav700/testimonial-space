@@ -66,7 +66,7 @@ const ColorSelector = ({
                     ? "1px solid gray"
                     : "",
               }}
-              onClick={(e) => {
+              onClick={() => {
                 setColorAction(item);
               }}
             ></span>

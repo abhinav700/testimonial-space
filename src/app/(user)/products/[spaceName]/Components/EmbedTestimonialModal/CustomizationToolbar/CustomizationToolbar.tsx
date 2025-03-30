@@ -49,7 +49,7 @@ const CustomizationToolbar = ({
               <Button
                 key={item}
                 className="p-4 min-w-[200px] my-1 min-h-[90px] bg-white hover:bg-slate-100 rounded-md flex flex-col justify-between items-center"
-                onClick={(e) => {
+                onClick={() => {
                   setDesignOption(item);
                 }}
               >

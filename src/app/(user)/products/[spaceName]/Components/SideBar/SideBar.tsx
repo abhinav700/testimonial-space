@@ -36,7 +36,7 @@ const SideBar = ({space}: SideBarProps) => {
         return (
           <>
             <div
-              onClick={(e) => {
+              onClick={() => {
                 activeSideBarOption != item
                   ? setActiveSideBarOption(item)
                   : setActiveSideBarOption("");

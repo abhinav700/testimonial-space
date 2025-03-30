@@ -56,7 +56,7 @@ const BorderOptions = ({
             >
               <input
                 type="radio"
-                onChange={(e) => {
+                onChange={() => {
                   setDesignValues(designValues =>( { ...designValues, borderRadius: item }));
                 }}
                 value={item}
@@ -86,7 +86,7 @@ const BorderOptions = ({
             >
               <input
                 type="radio"
-                onChange={(e) => {
+                onChange={() => {
                   setDesignValues({ ...designValues, borderWidth: item });
                 }}
                 value={item}

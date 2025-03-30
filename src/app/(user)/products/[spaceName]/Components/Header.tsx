@@ -14,7 +14,7 @@ const Header = ({spaceName, totalTestimonials, setShowEditSpaceModal}: HeaderPro
         <span className='text-lg text-whie font-bold'>{spaceName}</span>
       </div>
       <div className='mx-2'>
-        <Button onClick={(e) => {setShowEditSpaceModal(true);}} className="bg-slate-600 p-1 text-md rounded-md text-white hover:bg-slate-700" >Edit Space</Button>
+        <Button onClick={() => {setShowEditSpaceModal(true);}} className="bg-slate-600 p-1 text-md rounded-md text-white hover:bg-slate-700" >Edit Space</Button>
       </div>
     </div>
   )

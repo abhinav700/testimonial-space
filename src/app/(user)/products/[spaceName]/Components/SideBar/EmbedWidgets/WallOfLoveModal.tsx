@@ -20,7 +20,7 @@ const WallOfLoveModal = ({
         <span className="w-full flex justify-end">
           <X
             className="cursor-pointer"
-            onClick={(e) => {
+            onClick={() => {
               setActiveEmbedWidget("");
             }}
           />
@@ -34,7 +34,7 @@ const WallOfLoveModal = ({
           <h1 className="text-xl font-bold">Live Preview</h1>
           <TriangleIcon
             style={{ fill: "black" }}
-            onClick={(e) => {
+            onClick={() => {
               setShowLivePreview(!showLivePreview);
             }}
             className={`${!showLivePreview ? "rotate-triangle-down" : ""} cursor-pointer mr-3`}

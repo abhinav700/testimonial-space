@@ -24,7 +24,7 @@ const EditButton = ({
       )}
       <Button
         className="h-fit py-2 px-3 rounded-lg text-black text-md hover:bg-[#b3cec3] flex items-center justify-around"
-        onClick={(e) => {
+        onClick={() => {
           setShowEditTestimonialModal(true);
         }}
       >

@@ -18,7 +18,7 @@ const Hero = () => {
       </p>
         <Button
         className="rounded-lg mt-12 bg-green-700 text-white font-semibold mx-2 px-2 py-2 hover:bg-green-900"
-        onClick={async (e) => {
+        onClick={async () => {
           try {
             if(!data || !data.user || !data?.user?.email){
 

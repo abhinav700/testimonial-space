@@ -62,7 +62,7 @@ const TestimonialItem = ({
           <div className="w-full flex justify-end h-[fit]">
             {showToolbar ? (
               <Button
-                onClick={(e) => {
+                onClick={() => {
                   setShowToolbar(false);
                 }}
               >
@@ -70,7 +70,7 @@ const TestimonialItem = ({
               </Button>
             ) : (
               <Button
-                onClick={(e) => {
+                onClick={() => {
                   setShowToolbar(true);
                 }}
               >
