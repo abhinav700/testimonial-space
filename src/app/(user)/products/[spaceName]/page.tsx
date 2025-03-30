@@ -14,7 +14,6 @@ import SideBar from "./Components/SideBar/SideBar";
 const page = () => {
   const params = useParams();
   const { spaceName } = params;
- 
   const [loading, setLoading] = useState<boolean>(true);
   const [showEditSpaceModal, setShowEditSpaceModal] = useState<boolean>(false);
   

@@ -1,7 +1,6 @@
 import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { redisClient } from "@redis/redis";
 
 export const emailSchema = z.string().email("invalid email");
 

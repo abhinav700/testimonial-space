@@ -52,6 +52,10 @@ const EmbedTestimonialModal = ({
     borderRadius: "none",
     borderWidth: "small",
   });
+
+  console.log(`Printing NEXT public url: ${process.env.NEXT_PUBLIC_BASE_URL}/embed/testimonial/${
+              testimonial.id
+            }?${createQueryParams(designValues)}`)
   console.log(`INSIDE EMBED TESTIMONIAL : ${JSON.stringify(designValues)}`);
   return (
     <div className="w-screen h-screen fixed z-10 top-0 left-0 backdrop-blur-[2px] flex justify-center items-center p-4">

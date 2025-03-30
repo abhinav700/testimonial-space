@@ -30,14 +30,12 @@ const SideBar = ({space}: SideBarProps) => {
 
   const ActiveSideBarOptionJsx = activeOptionJsx[activeSideBarOption];
 
-  console.log(activeSideBarOption);
   return (
     <div className="md:w-[30%] lg:w-[30%]">
       {sideBarMenuOptions.map((item) => {
         return (
           <>
             <div
-              key={item}
               onClick={(e) => {
                 activeSideBarOption != item
                   ? setActiveSideBarOption(item)

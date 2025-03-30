@@ -10,7 +10,7 @@ const LandingPage = () => {
       <Hero />
       <FeatureSection />
       <HowItWorks />
-      <VideoDemo />   
+      {/* <VideoDemo />    */}
     </>
   )
 }

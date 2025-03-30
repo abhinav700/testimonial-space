@@ -1,11 +1,9 @@
 import { prisma } from "@/prisma/client";
-import { redisClient } from "@redis/redis";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
     const id = req.nextUrl.searchParams.get("id");
-    const redisKey = `testimonial[id]:${id}`;
 
     /**
      * fetching the testimonial corresponding to the testimonial Id
@@ -15,13 +13,6 @@ export async function GET(req: NextRequest) {
           id: id as string,
         },
       });
-
-      await redisClient.setex(
-        `testimonial[id]:${id}`,
-        2 * 3600,
-        JSON.stringify(testimonial)
-      );
-
     if (!testimonial)
       return NextResponse.json({
         status: 401,

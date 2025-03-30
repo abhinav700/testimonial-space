@@ -1,5 +1,4 @@
 import { prisma } from "@/prisma/client";
-import { redisClient } from "@redis/redis";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {

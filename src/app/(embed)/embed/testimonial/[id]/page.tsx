@@ -21,6 +21,7 @@ const EmbeddedTestimonial = ({ testimonialData }: embedProps) => {
   const searchParams = useSearchParams();
   const style = useStyles(searchParams);
 
+
   const fetchTestimonial = useCallback(async () => {
     try {
       const response = await axios.get(`/api/testimonial/fetch?id=${id}`);
@@ -30,7 +31,6 @@ const EmbeddedTestimonial = ({ testimonialData }: embedProps) => {
       else alert(await data.msg);
     } catch (error) {
       console.log(error);
-      // alert("Failed to fetch the testimonial");
     } finally {
       setLoading(false);
     }
