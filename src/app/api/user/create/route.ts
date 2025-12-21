@@ -11,8 +11,6 @@ export async function POST(req: NextRequest, response: NextResponse) {
   try {
     const { email, name } = UserDataSchema.parse(await req.json());
 
-   
-
     let  user = await prisma.user.findFirst({
         where: {
           email,
