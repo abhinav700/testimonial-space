@@ -9,7 +9,8 @@ import React, { ReactNode, useState } from "react";
 import CreateSpaceModal from "./CreateSpaceModal";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
+import Modal from "@mui/material/Modal"
+import IconButton from "@mui/material/IconButton";
 interface OverViewItem {
   title: ReactNode;
   description: ReactNode;
@@ -67,6 +68,13 @@ const Dashboard = () => {
     } catch (error) {}
   };
 
+  const handleCloseCreateSpaceModal = () => {
+    try{
+      setShowCreateSpaceModal(false);
+    }catch(e){
+      console.log(e);
+    }
+  }
   const handleDeleteSpace = async (id: string) => {
     try {
       const response = await axios.delete(`/api/space/delete?id=${id}`);
@@ -133,12 +141,21 @@ const Dashboard = () => {
         {/* Overview */}
         <h1 className="md:text-2xl text-lg my-4 font-bold">Overview</h1>
         <div className="w-full flex flex-wrap justify-between">
-          {user && showCreateSpaceModal && (
-            <CreateSpaceModal
-              setVisible={setShowCreateSpaceModal}
-              user={user}
-            />
-          )}
+          {
+          // user && showCreateSpaceModal && (
+            // <CreateSpaceModal
+              // setVisible={setShowCreateSpaceModal}
+              // user={user}
+            // />
+          // )
+          }
+          <Modal open={showCreateSpaceModal && user != null && user != undefined}
+            onClose={handleCloseCreateSpaceModal}
+            aria-describedby="modal to create a space"
+            >
+              
+            <CreateSpaceModal handleClose={handleCloseCreateSpaceModal}/>
+          </Modal>
           {overViewItems.map((item: OverViewItem, index) => (
             <div
               key={index}
@@ -189,7 +206,7 @@ const Dashboard = () => {
                   </div>
                   <Button
                     className="bg-red-600 h-fit py-2 px-3 rounded-lg text-white  hover:bg-red-700 flex items-center justify-around"
-                    onClick={() => {
+                    onClick={(e) => {
                       e.stopPropagation()
                       setShowDeleteModal(true);
                     }}

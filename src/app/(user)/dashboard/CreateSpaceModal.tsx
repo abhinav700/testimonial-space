@@ -1,20 +1,22 @@
 "use client";
 import Button from "@/components/Button";
 import { User } from "@/lib/schemas/schema";
-import { X } from "lucide-react";
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import { z } from "zod";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Space from "@/components/Space";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from '@mui/icons-material/Close';
+
 // space name
 // header title
 // custom message
 // Questions
 
 interface CreateSpaceModalProps {
-  setVisible?: any;
+  handleClose: React.Dispatch<SetStateAction<boolean>> ;
   user?: User;
 }
 
@@ -126,17 +128,15 @@ const ModalContainer = () => {
     </div>
   );
 };
-const CreateSpaceModal = ({ user, setVisible }: CreateSpaceModalProps) => {
+const CreateSpaceModal = ({ user, handleClose }: CreateSpaceModalProps) => {
   return (
     <div className="fixed top-0 left-0 w-full h-full backdrop-blur-sm flex items-center justify-center">
-      <div className="flex max-h-fit py-4 px-8 absolute min-h-[500px] lg:max-w-[1500px] md:max-w-[1100px] min-w-[1000px] bg-[#fcf7d5] rounded-lg">
+      <div className="max-h-fit py-4 px-8 absolute min-h-[500px] lg:max-w-[1500px] md:max-w-[1100px] min-w-[1000px] bg-[#f5f5f5] rounded-lg">
+          <IconButton sx={{position:"relative", left:'95%'}} onClick={(e) => {handleClose}}>
+            <CloseIcon/>
+            
+          </IconButton>
         <div className="w-full">
-          <span
-            className="w-full flex justify-end hover:opacity-80 cursor-pointer"
-            onClick={() => setVisible(false)}
-          >
-            <X />
-          </span>
           {<ModalContainer />}
         </div>
       </div>
