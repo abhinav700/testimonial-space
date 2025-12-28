@@ -1,20 +1,21 @@
 import React, { ReactNode } from "react";
 import FeatureCard from "./FeatureCard";
-import { Moon, Sun, Star, Users, Layout, Zap } from "lucide-react";
-
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
+import BoltIcon from '@mui/icons-material/Bolt';
 const features = [
   {
-    icon: <Users className="text-blue-500" size={40} />,
+   icon: <PeopleAltOutlinedIcon sx={{color:"blue", fontSize:"50px" }}/>,
     title: "Easy submission",
     descrption: "Space form for customers to submit testimonials",
   },
   {
-    icon: <Layout className="text-blue-800" size={40} />,
+    icon: <SpaceDashboardOutlinedIcon sx={{color:"blue", fontSize:"50px" }}/>,
     title: "Customizable spaces",
     descrption: "Create unique space for each product or service",
   },
   {
-    icon: <Zap className="text-red-500" fill="#ef4444" size={40} />,
+    icon:<BoltIcon sx={{color:"red", fontSize:"55px"}}/>,
     title: "Instant updates",
     descrption: "Testimonials appear in real time on your space",
   },

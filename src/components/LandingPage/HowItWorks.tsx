@@ -1,3 +1,4 @@
+import Avatar from "@mui/material/Avatar";
 import React from "react";
 
 interface StepItem{
@@ -40,7 +41,7 @@ const HowItWorks = () => {
           {
             steps?.map((value : StepItem) => (
               <div className="min-w-[50px] max-w-[250px] min-h-[250px] max-h-[400px] my-3 px-3 py-6 text-center">
-                <span className="px-8 py-6 text-[30px] bg-green-600 text-white font-bold rounded-full">{value.id}</span>
+                  <Avatar  sx={{bgcolor:"green", color:"white", fontWeight:"bold", position:"relaive", left:"40%", width:50, height:50}}>{value.id}</Avatar>
                 <h1 className="text-[25px] mt-8 font-bold text-slate-800">{value.title}</h1>
                 <p className="mt-1 text-lg font-medium text-slate-800">{value.description}</p>
               </div>

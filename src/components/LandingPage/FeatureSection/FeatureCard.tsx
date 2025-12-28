@@ -1,3 +1,6 @@
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 import React, { ReactNode } from 'react'
 
 interface FeatureCardProps{
@@ -8,11 +11,14 @@ interface FeatureCardProps{
 
 const FeatureCard = ({title, description, icon}: FeatureCardProps) => {
   return (
-    <div className='w-[280px] h-[300px] my-3 px-3 py-6 text-left bg-[#dcdfd7] rounded-lg'>
-      {icon}
-      <h1 className='text-[30px] font-bold my-5 text-slate-700'>{title}</h1>
-      <p className='text-xl text-slate-800 font-semibold'>{description}</p>
-    </div>
+    <Card sx={{width:"280px", height:"200px"}}>
+      <CardContent sx={{ textAlign:"left"}}>
+        {icon}
+        <Typography variant='h5' sx={{fontWeight:"900", marginTop: 2 }} gutterBottom>{title}</Typography>
+        <Typography component='p'>{description}</Typography>
+      </CardContent>
+    </Card>
+ 
   )
 }
 
