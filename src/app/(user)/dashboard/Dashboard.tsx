@@ -1,29 +1,27 @@
 "use client";
 import Button from "@/components/Button";
+import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import useFetchAllSpaces from "@/lib/hooks/space/useFetchAllSpaces";
 import useCreateUser from "@/lib/hooks/user/useCreateUser";
 import { SpaceType, User } from "@/lib/schemas/schema";
-import { LayoutIcon, MessageSquareIcon, Plus, Trash2, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { ReactNode, useState } from "react";
 import CreateSpaceModal from "./CreateSpaceModal";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Modal from "@mui/material/Modal"
+import Modal from "@mui/material/Modal";
+import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import IconButton from "@mui/material/IconButton";
+
 interface OverViewItem {
   title: ReactNode;
   description: ReactNode;
   endIcon?: ReactNode;
 }
-//
-//
-//
-// ADD A ONE TO MANY RELATIONSHIP BETWEEN TESTIMONIAL AND SPACE
-// SEE HOW CONNECT WORKS IN PRISMA
-// ADDING A TESTIMONIAL SHOULD AUTOMATICALLY LINK IT TO THE SPACE IT BELONGS TO
-//
-//
+
 const Dashboard = () => {
   const { data } = useSession();
   const user: User | null = useCreateUser(data);
@@ -39,7 +37,10 @@ const Dashboard = () => {
       <div className="fixed top-0 left-0 w-full h-full backdrop-blur-sm flex items-center justify-center">
       <div className="max-h-[500px] min-h-[200px] w-[30%] flex flex-col items-center bg-slate-200 rounded-lg">
         <span className="w-full flex justify-end px-4 mt-1">
-        <X onClick={()=> setShowDeleteModal(false)} className="hover:bg-opacity-60 cursor-pointer"/>
+          <IconButton onClick={() => {setShowDeleteModal(false)}}>
+            <CloseOutlinedIcon/>
+          </IconButton>
+        {/* <X onClick={()=> setShowDeleteModal(false)} className="hover:bg-opacity-60 cursor-pointer"/> */}
 
         </span>
           <h1 className="text-2xl font-bold mt-4">Are you sure you want to delete this?</h1>
@@ -99,12 +100,12 @@ const Dashboard = () => {
     {
       title: "Total Testimonials",
       description: totalTestimonials,
-      endIcon: <MessageSquareIcon />,
+      endIcon: <ChatBubbleOutlineOutlinedIcon />,
     },
     {
       title: "Total spaces",
       description: spaces ? spaces.length : 0,
-      endIcon: <LayoutIcon/>,
+      endIcon:<SpaceDashboardOutlinedIcon/> 
     },
   ];
 
@@ -141,25 +142,17 @@ const Dashboard = () => {
         {/* Overview */}
         <h1 className="md:text-2xl text-lg my-4 font-bold">Overview</h1>
         <div className="w-full flex flex-wrap justify-between">
-          {
-          // user && showCreateSpaceModal && (
-            // <CreateSpaceModal
-              // setVisible={setShowCreateSpaceModal}
-              // user={user}
-            // />
-          // )
-          }
           <Modal open={showCreateSpaceModal && user != null && user != undefined}
             onClose={handleCloseCreateSpaceModal}
             aria-describedby="modal to create a space"
             >
               
-            <CreateSpaceModal handleClose={handleCloseCreateSpaceModal}/>
+            <CreateSpaceModal handleClose={handleCloseCreateSpaceModal} user={user!}/>
           </Modal>
           {overViewItems.map((item: OverViewItem, index) => (
             <div
               key={index}
-              className="w-[45%] rounded-lg mt-4 p-3 bg-[#e6ffd1] max-400px"
+              className="w-[45%] rounded-lg mt-4 p-3 bg-[#ccf5aa] max-400px"
             >
               <div className="flex justify-between">
                 <span className="text-lg font-medium text-slate-800">
@@ -181,7 +174,7 @@ const Dashboard = () => {
             onClick={handleShowCreateSpaceModal}
           >
             <span className="mr-2">
-              <Plus className="text-sm" />
+              <AddOutlinedIcon />
             </span>
             <span>Create new space</span>
           </Button>
@@ -200,7 +193,7 @@ const Dashboard = () => {
                   >
                     <h2 className="text-xl font-bold">{item.spaceName}</h2>
                     <div className="flex mt-3 items-center">
-                      <MessageSquareIcon />
+                      <ChatBubbleOutlineOutlinedIcon />
                       <span className="mx-2">Testimonials: {item.testimonials? item.testimonials.length : 0}</span>
                     </div>
                   </div>
@@ -211,7 +204,7 @@ const Dashboard = () => {
                       setShowDeleteModal(true);
                     }}
                   >
-                    <Trash2 />
+                    <DeleteOutlinedIcon />
                     <span className="ml-2">Delete</span>
                   </Button>
                 </div>

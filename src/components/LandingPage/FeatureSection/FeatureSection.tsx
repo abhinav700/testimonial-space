@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import FeatureCard from "./FeatureCard";
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
