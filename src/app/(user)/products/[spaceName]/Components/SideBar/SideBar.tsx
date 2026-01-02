@@ -1,8 +1,10 @@
 import { ChevronDown, ChevronRight } from "lucide-react";
 import React, { useState } from "react";
-import "./Sidebar.css";
 import EmbedWidgets from "./EmbedWidgets/EmbedWidgets";
 import { SpaceType } from "@/lib/schemas/schema";
+import "./Sidebar.css";
+
+
 export type SideBarMenuOptions = "embed widgets";
 
 const sideBarMenuOptions: SideBarMenuOptions[] = ["embed widgets"];
@@ -28,6 +30,7 @@ const SideBar = ({space}: SideBarProps) => {
     SideBarMenuOptions | ""
   >("");
 
+  console.log("space inside sidebar", space);
   const ActiveSideBarOptionJsx = activeOptionJsx[activeSideBarOption];
 
   return (

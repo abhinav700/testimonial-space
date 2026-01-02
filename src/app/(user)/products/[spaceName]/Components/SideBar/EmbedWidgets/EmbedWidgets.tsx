@@ -57,6 +57,9 @@ const EmbedWidgets = ({space}: EmbedWidgetsProps) => {
   const [activeEmbedWidget, setActiveEmbedWidget] = useState<
     EmbedWidgetOptions | ""
   >("");
+
+  console.log("embed space", space);
+  
   const [isEmbedWidgetModalVisible, setIsEmbedWidgetModalVisible] =
     useState<boolean>(false);
 

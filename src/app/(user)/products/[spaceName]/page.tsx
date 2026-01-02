@@ -16,17 +16,17 @@ const page = () => {
   const { spaceName } = params;
   const [loading, setLoading] = useState<boolean>(true);
   const [showEditSpaceModal, setShowEditSpaceModal] = useState<boolean>(false);
-  
   const [showEditTestimonialModal, setShowEditTestimonialModal] =
-    useState<boolean>(false);
+  useState<boolean>(false);
   
   const user = useSession();
- 
+  
   const { space, setSpace } = useFetchSpaceByName({
     setLoading,
     spaceName: spaceName as string,
   });
-
+  
+  console.log(space)
   if (loading) {
     return <LoadingMessage />;
   }

@@ -17,7 +17,7 @@ const EmbeddedTestimonial = ({ testimonialData }: embedProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const params = useParams();
   const { id } = params;
-
+  console.log("entered the embed testimonial")
   const searchParams = useSearchParams();
   const style = useStyles(searchParams);
 

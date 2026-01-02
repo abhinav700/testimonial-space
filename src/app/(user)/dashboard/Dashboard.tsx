@@ -31,13 +31,17 @@ const Dashboard = () => {
 
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   const router = useRouter()
+
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
+  }
   const DeleteModal = ({ id }: { id: string }) => {
     // document.body.style.overflow = "hidden";
     return (
       <div className="fixed top-0 left-0 w-full h-full backdrop-blur-sm flex items-center justify-center">
       <div className="max-h-[500px] min-h-[200px] w-[30%] flex flex-col items-center bg-slate-200 rounded-lg">
         <span className="w-full flex justify-end px-4 mt-1">
-          <IconButton onClick={() => {setShowDeleteModal(false)}}>
+          <IconButton onClick={() => {handleCloseDeleteModal()}}>
             <CloseOutlinedIcon/>
           </IconButton>
         {/* <X onClick={()=> setShowDeleteModal(false)} className="hover:bg-opacity-60 cursor-pointer"/> */}
@@ -49,8 +53,7 @@ const Dashboard = () => {
             <Button
               className="py-2 px-4 bg-blue-700 hover:bg-blue-800 text-white cursor-pointer text-xl rounded-lg"
               onClick={() => {
-
-                setShowDeleteModal(false);
+                handleCloseDeleteModal()
               }}
             >
               No
@@ -183,7 +186,13 @@ const Dashboard = () => {
           spaces && spaces?.length > 0 ? (
             spaces?.map((item: SpaceType) => (
               <>
-              {showDeleteModal && <DeleteModal id={item.id}/>}
+              <Modal open={showDeleteModal} 
+                onClose={() => {handleCloseDeleteModal()}}
+                aria-describedBy="Modal to delete a space"
+              >
+                <DeleteModal id={item.id}/>
+              </Modal>
+              {/* {showDeleteModal && <DeleteModal id={item.id}/>} */}
                 <div className="w-full rounded-lg p-4 cursor-pointer my-4 bg-[#dddddd] hover:bg-[#c2bfbf] flex justify-between items-center"
                   onClick={()=>{router.push(`/products/${item.spaceName}`)}}
                   key={item.id}
