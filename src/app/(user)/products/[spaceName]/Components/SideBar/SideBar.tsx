@@ -1,72 +1,13 @@
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
-import EmbedWidgets from "./EmbedWidgets/EmbedWidgets";
 import { SpaceType } from "@/lib/schemas/schema";
-import "./Sidebar.css";
 
-
-export type SideBarMenuOptions = "embed widgets";
-
-const sideBarMenuOptions: SideBarMenuOptions[] = ["embed widgets"];
-
-const EmptyJsx = () => {
-  return <></>;
-};
-
-
-
-// the sub menu for each option
-const activeOptionJsx = {
-  "": EmptyJsx,
-  "embed widgets": EmbedWidgets,
-};
 
 interface SideBarProps{
   space: SpaceType;
 }
 
 const SideBar = ({space}: SideBarProps) => {
-  const [activeSideBarOption, setActiveSideBarOption] = useState<
-    SideBarMenuOptions | ""
-  >("");
-
-  console.log("space inside sidebar", space);
-  const ActiveSideBarOptionJsx = activeOptionJsx[activeSideBarOption];
-
-  return (
-    <div className="md:w-[30%] lg:w-[30%]">
-      {sideBarMenuOptions.map((item) => {
-        return (
-          <>
-            <div
-              onClick={() => {
-                activeSideBarOption != item
-                  ? setActiveSideBarOption(item)
-                  : setActiveSideBarOption("");
-              }}
-              className="w-full flex justify-between p-2 rounded-md cursor-pointer text-[#222222] hover:bg-[#d8d8d8] items-center"
-            >
-              <h1 className="font-bold text-lg cursor-pointer">
-                {item[0].toLocaleUpperCase() + item.slice(1)}
-              </h1>
-              {/* When this option is active, we will display downward cheveron
-               * - inactiveChevron: right chevron
-               * - activeChevron: down cevron
-               **/}
-              <ChevronRight
-                className={`${
-                  item == activeSideBarOption
-                    ? "activeChevron"
-                    : "inactiveChevron"
-                }`}
-              />
-            </div>
-            <ActiveSideBarOptionJsx space={space}/>
-          </>
-        );
-      })}
-    </div>
-  );
 };
 
 export default SideBar;
