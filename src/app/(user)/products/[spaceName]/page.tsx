@@ -3,13 +3,15 @@ import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import Header from "./Components/Header";
 import useFetchSpaceByName from "@/app/(customer)/space/[spaceName]/useFetchSpaceByName";
-import { TestimonialType } from "@/lib/schemas/schema";
+import { SpaceType, TestimonialType } from "@/lib/schemas/schema";
 import LoadingMessage from "@/components/LoadingMessage";
 
 import TestimonialItem from "./Components/TestimonialItem";
 import EditSpaceModal from "./Components/EditSpaceModal/EditSpaceModal";
 import { useSession } from "next-auth/react";
-import SideBar from "./Components/SideBar/SideBar";
+import SideBar, { SidebarSectionKey } from "./Components/SideBar/SideBar";
+
+ 
 
 const page = () => {
   const params = useParams();
@@ -18,7 +20,10 @@ const page = () => {
   const [showEditSpaceModal, setShowEditSpaceModal] = useState<boolean>(false);
   const [showEditTestimonialModal, setShowEditTestimonialModal] =
   useState<boolean>(false);
-  
+  const [activeSectionKey, setActiveSectionKey] = useState<SidebarSectionKey>("embed widgets");
+
+  const closeModal = () => {setActiveSectionKey(null)};
+
   const user = useSession();
   
   const { space, setSpace } = useFetchSpaceByName({
@@ -52,7 +57,7 @@ const page = () => {
 
       {/* Display sidebar and testimonials */}
       <div className="w-full justify-around flex px-2 py-5">
-        <SideBar space= {space}/>
+        <SideBar space= {space} activeSectionKey={activeSectionKey} setActiveSectionKey={setActiveSectionKey}/>
         {/* Display all the testimonials */}
         <div className="w-[60%] flex flex-col items-center min-h-[100vh] max-h-fit ">
           {space.testimonials?.length ? (
