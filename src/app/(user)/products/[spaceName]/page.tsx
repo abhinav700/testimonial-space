@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import Header from "./Components/Header";
 import useFetchSpaceByName from "@/app/(customer)/space/[spaceName]/useFetchSpaceByName";
 import { SpaceType, TestimonialType } from "@/lib/schemas/schema";
@@ -20,8 +20,7 @@ const page = () => {
   const [showEditSpaceModal, setShowEditSpaceModal] = useState<boolean>(false);
   const [showEditTestimonialModal, setShowEditTestimonialModal] =
   useState<boolean>(false);
-  const [activeSectionKey, setActiveSectionKey] = useState<SidebarSectionKey>("embed widgets");
-
+  const [activeSectionKey, setActiveSectionKey] = useState<SidebarSectionKey>("EMBED_WIDGETS");
   const closeModal = () => {setActiveSectionKey(null)};
 
   const user = useSession();
@@ -56,7 +55,7 @@ const page = () => {
       />
 
       {/* Display sidebar and testimonials */}
-      <div className="w-full justify-around flex px-2 py-5">
+      <div className="w-full justify-between flex">
         <SideBar space= {space} activeSectionKey={activeSectionKey} setActiveSectionKey={setActiveSectionKey}/>
         {/* Display all the testimonials */}
         <div className="w-[60%] flex flex-col items-center min-h-[100vh] max-h-fit ">
@@ -69,7 +68,7 @@ const page = () => {
                   key={testimonial.id}
                   space={space}
                   testimonial={testimonial}
-                  setSpace={setSpace}
+                    setSpace={setSpace}
                   showEditTestimonialModal={showEditTestimonialModal}
                   setShowEditTestimonialModal={setShowEditTestimonialModal}
                 />

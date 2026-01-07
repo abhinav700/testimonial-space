@@ -4,10 +4,14 @@ import { EggFriedIcon, X } from "lucide-react";
 import React, { SetStateAction, useState } from "react";
 import CustomizationToolbar from "./CustomizationToolbar/CustomizationToolbar";
 import EmbedCode from "@/components/EmbedCode";
+import { SidebarSectionKey } from "../SideBar/SideBar";
 
 interface EmbedTestimonialModalProps {
   setShowEmbedTestimonialModal: React.Dispatch<SetStateAction<boolean>>;
   testimonial: TestimonialType;
+  activeSectionKey?: SidebarSectionKey,
+  open?: boolean,
+  onClose?: () => void;
 }
 
 export interface DesignValuesType {
