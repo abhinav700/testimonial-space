@@ -100,7 +100,8 @@ export const TestimonialScalarFieldEnum = {
   customerName: 'customerName',
   customerEmail: 'customerEmail',
   createdAt: 'createdAt',
-  spaceId: 'spaceId'
+  spaceId: 'spaceId',
+  isWallOfLoveEmbed: 'isWallOfLoveEmbed'
 } as const
 
 export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]

@@ -31,6 +31,7 @@ export type TestimonialMinAggregateOutputType = {
   customerEmail: string | null
   createdAt: Date | null
   spaceId: string | null
+  isWallOfLoveEmbed: boolean | null
 }
 
 export type TestimonialMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type TestimonialMaxAggregateOutputType = {
   customerEmail: string | null
   createdAt: Date | null
   spaceId: string | null
+  isWallOfLoveEmbed: boolean | null
 }
 
 export type TestimonialCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type TestimonialCountAggregateOutputType = {
   customerEmail: number
   createdAt: number
   spaceId: number
+  isWallOfLoveEmbed: number
   _all: number
 }
 
@@ -60,6 +63,7 @@ export type TestimonialMinAggregateInputType = {
   customerEmail?: true
   createdAt?: true
   spaceId?: true
+  isWallOfLoveEmbed?: true
 }
 
 export type TestimonialMaxAggregateInputType = {
@@ -69,6 +73,7 @@ export type TestimonialMaxAggregateInputType = {
   customerEmail?: true
   createdAt?: true
   spaceId?: true
+  isWallOfLoveEmbed?: true
 }
 
 export type TestimonialCountAggregateInputType = {
@@ -78,6 +83,7 @@ export type TestimonialCountAggregateInputType = {
   customerEmail?: true
   createdAt?: true
   spaceId?: true
+  isWallOfLoveEmbed?: true
   _all?: true
 }
 
@@ -160,6 +166,7 @@ export type TestimonialGroupByOutputType = {
   customerEmail: string
   createdAt: Date
   spaceId: string
+  isWallOfLoveEmbed: boolean
   _count: TestimonialCountAggregateOutputType | null
   _min: TestimonialMinAggregateOutputType | null
   _max: TestimonialMaxAggregateOutputType | null
@@ -190,6 +197,7 @@ export type TestimonialWhereInput = {
   customerEmail?: Prisma.StringFilter<"Testimonial"> | string
   createdAt?: Prisma.DateTimeFilter<"Testimonial"> | Date | string
   spaceId?: Prisma.StringFilter<"Testimonial"> | string
+  isWallOfLoveEmbed?: Prisma.BoolFilter<"Testimonial"> | boolean
   space?: Prisma.XOR<Prisma.SpaceScalarRelationFilter, Prisma.SpaceWhereInput>
 }
 
@@ -200,6 +208,7 @@ export type TestimonialOrderByWithRelationInput = {
   customerEmail?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   spaceId?: Prisma.SortOrder
+  isWallOfLoveEmbed?: Prisma.SortOrder
   space?: Prisma.SpaceOrderByWithRelationInput
 }
 
@@ -213,6 +222,7 @@ export type TestimonialWhereUniqueInput = Prisma.AtLeast<{
   customerEmail?: Prisma.StringFilter<"Testimonial"> | string
   createdAt?: Prisma.DateTimeFilter<"Testimonial"> | Date | string
   spaceId?: Prisma.StringFilter<"Testimonial"> | string
+  isWallOfLoveEmbed?: Prisma.BoolFilter<"Testimonial"> | boolean
   space?: Prisma.XOR<Prisma.SpaceScalarRelationFilter, Prisma.SpaceWhereInput>
 }, "id" | "id">
 
@@ -223,6 +233,7 @@ export type TestimonialOrderByWithAggregationInput = {
   customerEmail?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   spaceId?: Prisma.SortOrder
+  isWallOfLoveEmbed?: Prisma.SortOrder
   _count?: Prisma.TestimonialCountOrderByAggregateInput
   _max?: Prisma.TestimonialMaxOrderByAggregateInput
   _min?: Prisma.TestimonialMinOrderByAggregateInput
@@ -238,6 +249,7 @@ export type TestimonialScalarWhereWithAggregatesInput = {
   customerEmail?: Prisma.StringWithAggregatesFilter<"Testimonial"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
   spaceId?: Prisma.StringWithAggregatesFilter<"Testimonial"> | string
+  isWallOfLoveEmbed?: Prisma.BoolWithAggregatesFilter<"Testimonial"> | boolean
 }
 
 export type TestimonialCreateInput = {
@@ -246,6 +258,7 @@ export type TestimonialCreateInput = {
   customerName: string
   customerEmail: string
   createdAt?: Date | string
+  isWallOfLoveEmbed?: boolean
   space: Prisma.SpaceCreateNestedOneWithoutTestimonialsInput
 }
 
@@ -256,6 +269,7 @@ export type TestimonialUncheckedCreateInput = {
   customerEmail: string
   createdAt?: Date | string
   spaceId: string
+  isWallOfLoveEmbed?: boolean
 }
 
 export type TestimonialUpdateInput = {
@@ -264,6 +278,7 @@ export type TestimonialUpdateInput = {
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   customerEmail?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isWallOfLoveEmbed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   space?: Prisma.SpaceUpdateOneRequiredWithoutTestimonialsNestedInput
 }
 
@@ -274,6 +289,7 @@ export type TestimonialUncheckedUpdateInput = {
   customerEmail?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   spaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  isWallOfLoveEmbed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TestimonialCreateManyInput = {
@@ -283,6 +299,7 @@ export type TestimonialCreateManyInput = {
   customerEmail: string
   createdAt?: Date | string
   spaceId: string
+  isWallOfLoveEmbed?: boolean
 }
 
 export type TestimonialUpdateManyMutationInput = {
@@ -291,6 +308,7 @@ export type TestimonialUpdateManyMutationInput = {
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   customerEmail?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isWallOfLoveEmbed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TestimonialUncheckedUpdateManyInput = {
@@ -300,6 +318,7 @@ export type TestimonialUncheckedUpdateManyInput = {
   customerEmail?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   spaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  isWallOfLoveEmbed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TestimonialListRelationFilter = {
@@ -319,6 +338,7 @@ export type TestimonialCountOrderByAggregateInput = {
   customerEmail?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   spaceId?: Prisma.SortOrder
+  isWallOfLoveEmbed?: Prisma.SortOrder
 }
 
 export type TestimonialMaxOrderByAggregateInput = {
@@ -328,6 +348,7 @@ export type TestimonialMaxOrderByAggregateInput = {
   customerEmail?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   spaceId?: Prisma.SortOrder
+  isWallOfLoveEmbed?: Prisma.SortOrder
 }
 
 export type TestimonialMinOrderByAggregateInput = {
@@ -337,6 +358,7 @@ export type TestimonialMinOrderByAggregateInput = {
   customerEmail?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   spaceId?: Prisma.SortOrder
+  isWallOfLoveEmbed?: Prisma.SortOrder
 }
 
 export type TestimonialCreateNestedManyWithoutSpaceInput = {
@@ -385,12 +407,17 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type TestimonialCreateWithoutSpaceInput = {
   id?: string
   description?: string | null
   customerName: string
   customerEmail: string
   createdAt?: Date | string
+  isWallOfLoveEmbed?: boolean
 }
 
 export type TestimonialUncheckedCreateWithoutSpaceInput = {
@@ -399,6 +426,7 @@ export type TestimonialUncheckedCreateWithoutSpaceInput = {
   customerName: string
   customerEmail: string
   createdAt?: Date | string
+  isWallOfLoveEmbed?: boolean
 }
 
 export type TestimonialCreateOrConnectWithoutSpaceInput = {
@@ -437,6 +465,7 @@ export type TestimonialScalarWhereInput = {
   customerEmail?: Prisma.StringFilter<"Testimonial"> | string
   createdAt?: Prisma.DateTimeFilter<"Testimonial"> | Date | string
   spaceId?: Prisma.StringFilter<"Testimonial"> | string
+  isWallOfLoveEmbed?: Prisma.BoolFilter<"Testimonial"> | boolean
 }
 
 export type TestimonialCreateManySpaceInput = {
@@ -445,6 +474,7 @@ export type TestimonialCreateManySpaceInput = {
   customerName: string
   customerEmail: string
   createdAt?: Date | string
+  isWallOfLoveEmbed?: boolean
 }
 
 export type TestimonialUpdateWithoutSpaceInput = {
@@ -453,6 +483,7 @@ export type TestimonialUpdateWithoutSpaceInput = {
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   customerEmail?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isWallOfLoveEmbed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TestimonialUncheckedUpdateWithoutSpaceInput = {
@@ -461,6 +492,7 @@ export type TestimonialUncheckedUpdateWithoutSpaceInput = {
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   customerEmail?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isWallOfLoveEmbed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TestimonialUncheckedUpdateManyWithoutSpaceInput = {
@@ -469,6 +501,7 @@ export type TestimonialUncheckedUpdateManyWithoutSpaceInput = {
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   customerEmail?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isWallOfLoveEmbed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -480,6 +513,7 @@ export type TestimonialSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   customerEmail?: boolean
   createdAt?: boolean
   spaceId?: boolean
+  isWallOfLoveEmbed?: boolean
   space?: boolean | Prisma.SpaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["testimonial"]>
 
@@ -490,6 +524,7 @@ export type TestimonialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   customerEmail?: boolean
   createdAt?: boolean
   spaceId?: boolean
+  isWallOfLoveEmbed?: boolean
   space?: boolean | Prisma.SpaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["testimonial"]>
 
@@ -500,6 +535,7 @@ export type TestimonialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   customerEmail?: boolean
   createdAt?: boolean
   spaceId?: boolean
+  isWallOfLoveEmbed?: boolean
   space?: boolean | Prisma.SpaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["testimonial"]>
 
@@ -510,9 +546,10 @@ export type TestimonialSelectScalar = {
   customerEmail?: boolean
   createdAt?: boolean
   spaceId?: boolean
+  isWallOfLoveEmbed?: boolean
 }
 
-export type TestimonialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "customerName" | "customerEmail" | "createdAt" | "spaceId", ExtArgs["result"]["testimonial"]>
+export type TestimonialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "customerName" | "customerEmail" | "createdAt" | "spaceId" | "isWallOfLoveEmbed", ExtArgs["result"]["testimonial"]>
 export type TestimonialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   space?: boolean | Prisma.SpaceDefaultArgs<ExtArgs>
 }
@@ -535,6 +572,7 @@ export type $TestimonialPayload<ExtArgs extends runtime.Types.Extensions.Interna
     customerEmail: string
     createdAt: Date
     spaceId: string
+    isWallOfLoveEmbed: boolean
   }, ExtArgs["result"]["testimonial"]>
   composites: {}
 }
@@ -965,6 +1003,7 @@ export interface TestimonialFieldRefs {
   readonly customerEmail: Prisma.FieldRef<"Testimonial", 'String'>
   readonly createdAt: Prisma.FieldRef<"Testimonial", 'DateTime'>
   readonly spaceId: Prisma.FieldRef<"Testimonial", 'String'>
+  readonly isWallOfLoveEmbed: Prisma.FieldRef<"Testimonial", 'Boolean'>
 }
     
 

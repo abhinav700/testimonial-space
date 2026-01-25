@@ -43,6 +43,8 @@ export const sidebarItems : SidebarItem[] = [
 
 
 const SideBar = ({space, activeSectionKey, setActiveSectionKey}: SideBarProps) => {
+  
+
   return <>
     <Box sx={{}} width={240} borderRight='3px solid #ccc' borderBottom = '3px solid #ccc'>
       {
@@ -58,13 +60,11 @@ const SideBar = ({space, activeSectionKey, setActiveSectionKey}: SideBarProps) =
             
           </SimpleTreeView>
 
-          // return <Button fullWidth color="inherit" sx={{textTransform:"none",backgroundColor: `${activeSectionKey == item.key ? '#ccc' : 'white'}`}} onClick={() => {setActiveSectionKey(item.key)}}>
-          //   <Typography component='p'>{item.label}</Typography>
-          // </Button>
+          
         })
       }
     </Box>
-  </>
+  </> 
 };
 
 export default SideBar;

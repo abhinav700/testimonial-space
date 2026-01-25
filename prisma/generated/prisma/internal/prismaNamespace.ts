@@ -695,7 +695,8 @@ export const TestimonialScalarFieldEnum = {
   customerName: 'customerName',
   customerEmail: 'customerEmail',
   createdAt: 'createdAt',
-  spaceId: 'spaceId'
+  spaceId: 'spaceId',
+  isWallOfLoveEmbed: 'isWallOfLoveEmbed'
 } as const
 
 export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
@@ -756,6 +757,13 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

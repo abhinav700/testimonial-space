@@ -44,4 +44,5 @@ model Testimonial{
   createdAt DateTime @default(now())
   space Space @relation(fields: [spaceId], references: [id])
   spaceId String
+  isWallOfLoveEmbed Boolean @default(false)
 }
