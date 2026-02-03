@@ -1,9 +1,14 @@
 import Button from "@/components/Button";
 import { SpaceType, TestimonialType } from "@/lib/schemas/schema";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronUp, ChevronDown, icons } from "lucide-react";
 import { useState } from "react";
 import TestimonialToolbar from "./TestimonialToolbar/TestimonialToolbar";
 import EditTestimonialModal from "./EditTestimonialModal/EditTestimonialModal";
+import Box from "@mui/material/Box";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import IconButton from "@mui/material/IconButton";
+import axios from "axios";
 
 interface TestimonialItemProps {
   testimonial: TestimonialType;
@@ -19,7 +24,36 @@ const TestimonialItem = ({
   showEditTestimonialModal,
   setShowEditTestimonialModal,
 }: TestimonialItemProps) => {
+  const [isWallOfLoveEmbed, setIsWallOfLoveEmbed] = useState<boolean>(false);
   const [showToolbar, setShowToolbar] = useState<boolean>(false);
+  const handleEmbedTestimonialWol = async () => {
+    try{
+      const response = await axios.put("/api/testimonial/toggleWolEmbed", {
+        id: testimonial.id
+      })
+
+      console.log(response);
+      setIsWallOfLoveEmbed(!isWallOfLoveEmbed)
+    }catch(e){
+      console.log(e);
+    } 
+  }
+
+  const renderEmbedIcon = (iconStyle: {color: string, cursor: string}) => {
+    try{
+      // return  !isWallOfLoveEmbed ?  <FavoriteBorderIcon sx={iconStyle} onClick={handleEmbedTestimonialWol}>
+            // : <FavoriteIcon sx={{color:"red", cursor:"pointer"}}/>
+      return <IconButton onClick={handleEmbedTestimonialWol}>
+        {
+
+          !isWallOfLoveEmbed ?  <FavoriteBorderIcon sx={iconStyle} />
+          : <FavoriteIcon sx={{color:"red", cursor:"pointer"}}/>
+        }
+      </IconButton>
+    }catch(e){
+      console.log(e)
+    }
+  }
   return (
     <>
      
@@ -30,7 +64,12 @@ const TestimonialItem = ({
         />
       )}
       <div className="w-[90%] min-h-[150px] max-h-[500px] flex flex-col justify-between items-start p-4 rounded-md bg-[#ebf3d6]">
-        <p>{testimonial.description}</p>
+        <Box sx={{display:"flex", justifyContent:"space-between", alignItems:"center", width:"100%"}}>
+          <p>{testimonial.description}</p>
+          {
+            renderEmbedIcon({color:"red", cursor:"pointer"})                  
+          }
+        </Box>
         <div className="flex flex-col w-full mt-5">
           <div className="w-full flex justify-between">
             <span className="flex flex-col items-start">
